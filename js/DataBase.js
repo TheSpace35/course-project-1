@@ -12,23 +12,34 @@ function InitLocalStorage(){
 
                 switch (elem.name){
                     case 'Admins':
-                        localStorage.setItem('ADMINS', JSON.stringify(elem.data));
+                        if(!localStorage.getItem('ADMINS')){
+                            localStorage.setItem('ADMINS', JSON.stringify(elem.data));
+                        }
+                        
                         break;
 
                     case 'Clients':
-                        localStorage.setItem('CLIENTS', JSON.stringify(elem.data));
+                        if(!localStorage.getItem('CLIENTS')){
+                            localStorage.setItem('CLIENTS', JSON.stringify(elem.data));
+                        }
                         break;
 
                     case 'Projects':
-                        localStorage.setItem('PROJECTS', JSON.stringify(elem.data));
+                        if(!localStorage.getItem('PROJECTS')){
+                            localStorage.setItem('PROJECTS', JSON.stringify(elem.data));
+                        }
                         break;
 
                     case 'Applications':
-                        localStorage.setItem('APPLICATIONS', JSON.stringify(elem.data));
+                        if(!localStorage.getItem('APPLICATIONS')){
+                            localStorage.setItem('APPLICATIONS', JSON.stringify(elem.data));
+                        }
                         break;
 
                     case 'Statuses':
-                        localStorage.setItem('STATUSES', JSON.stringify(elem.data));
+                        if(!localStorage.getItem('STATUSES')){
+                            localStorage.setItem('STATUSES', JSON.stringify(elem.data));
+                        }
                         break;
 
                 }
@@ -42,21 +53,6 @@ function InitLocalStorage(){
 
 
 
-// function UpdateJSONdb() {
-//     const data = [];
 
-//     const tables = ['ADMINS', 'CLIENTS', 'PROJECTS', 'APPLICATIONS', 'STATUSES'];
 
-//     tables.forEach(table => {
-//         const tableData = localStorage.getItem(table);
-//         if (tableData) {
-//             data.push({
-//                 type: 'table',
-//                 name: table,
-//                 data: JSON.parse(tableData)
-//             });
-//         }
-//     });
 
-//     return data;
-// }

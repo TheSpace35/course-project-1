@@ -1,9 +1,4 @@
-const logOutBtn = document.querySelector('.logOutBtn');
 
-logOutBtn.addEventListener('click', ()=>{
-    console.log('logout');
-    localStorage.removeItem('session');
-});
 //защита от входа без авторизации
 
 
@@ -14,3 +9,12 @@ if(!localStorage.getItem('session')){
 else if(JSON.parse(localStorage.getItem('session')).role !== 'client'){
     location.href = '/index.html';
 }
+
+InitLocalStorage();
+
+const logOutBtn = document.querySelector('.logOutBtn');
+
+logOutBtn.addEventListener('click', ()=>{
+    console.log('logout');
+    localStorage.removeItem('session');
+});

@@ -1,6 +1,6 @@
+
 InitLocalStorage();
 
-// UpdateJSONdb();
 
 
 const loginMenuBtn = document.querySelector('.loginBtn');
@@ -17,6 +17,7 @@ loginMenuBtn.addEventListener('click', e=>{
     document.querySelector('.login-form__message').style.opacity = 0;
 
     if (!(loginPopup.classList.contains('active'))){
+        loginBtn.removeAttribute('disabled');
         document.querySelector('.form-overlay').style.display = 'block';
         loginPopup.classList.add('active');
 
@@ -36,10 +37,17 @@ loginBtn.addEventListener('click', e => {
     const form = loginBtn.closest('form');
     if (form.checkValidity()) {
         Login();
+        if(Login() === 1){
+            loginPopup.classList.remove('active');
+            document.querySelector('.form-overlay').style.display = 'none';
+        }
+
     } else {
         form.reportValidity();
     }
 });
+
+
 
 
 

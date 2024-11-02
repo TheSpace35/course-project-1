@@ -1,3 +1,5 @@
+InitLocalStorage();
+
 const logOutBtn = document.querySelector('.logOutBtn');
 const applications = document.querySelector('.applications');
 const clients = document.querySelector('.clients');
@@ -21,6 +23,7 @@ else if(JSON.parse(localStorage.getItem('session')).role !== 'admin'){
 
 
 function initClients(){
+
     const clients = JSON.parse(localStorage.getItem('CLIENTS'));
 
     clients.forEach(el=>{
@@ -62,7 +65,7 @@ function initClients(){
     clientProjectsBtn.forEach(el=>{
 
         el.addEventListener('click', e=>{
-            clients.querySelectorAll('.clients__table_projects').forEach(elem=>{
+            document.querySelectorAll('.clients__table_projects').forEach(elem=>{
                 elem.style.display = 'none';
             });
             
@@ -71,16 +74,6 @@ function initClients(){
     
     });
     
-    clientAddBtn.addEventListener('click', e=>{
-    
-        document.querySelector('.clientAdd-form__message').style.opacity = 0;
-    
-        if (!(clientAddPopup.classList.contains('active'))){
-            document.querySelector('.form-overlay').style.display = 'block';
-            clientAddPopup.classList.add('active');
-    
-        }
-    });
 };
 
 
@@ -91,9 +84,29 @@ logOutBtn.addEventListener('click', ()=>{
     localStorage.removeItem('session');
 });
 
-initClients();
+
+if(localStorage.getItem('CLIENTS')){
+    initClients();
+
+}
+else{
+    InitLocalStorage();
+    initClients();
+};
 
 
+
+clientAddBtn.addEventListener('click', e=>{
+    clientAddFormBtn.removeAttribute('disabled');
+    
+    document.querySelector('.clientAdd-form__message').style.opacity = 0;
+
+    if (!(clientAddPopup.classList.contains('active'))){
+        document.querySelector('.form-overlay').style.display = 'block';
+        clientAddPopup.classList.add('active');
+
+    }
+});
 
 document.addEventListener('click', e => {
     if (!clientAddPopup.contains(e.target) && !clientAddBtn.contains(e.target)) {
@@ -108,7 +121,15 @@ clientAddFormBtn.addEventListener('click', e => {
     const form = clientAddFormBtn.closest('form');
     if (form.checkValidity()) {
         //validate("addClient",{"type":"company","element":clientAddPopupForm.company},{'type':'login',"element":clientAddPopupForm.login});
+        clientAddFormBtn.setAttribute('disabled', 'disabled');
         CreateClient();
+        document.querySelector('.clientAdd-form__message').style.opacity = 1;
+
+        setTimeout(()=>{
+            clientAddPopup.classList.remove('active');
+            document.querySelector('.form-overlay').style.display = 'none';
+
+        }, 2000)
         initClients();
     } else {
         form.reportValidity();

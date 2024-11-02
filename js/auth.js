@@ -75,7 +75,6 @@ function Login(){
             isAuth = 1;
 
             setTimeout(() => { 
-                console.log(dataSave);
                 if(dataSave){
                     localStorage.setItem('session', JSON.stringify({'role':"client",'save':true})); 
                 }
@@ -86,6 +85,7 @@ function Login(){
                 location.href = "./client.html";
                 msg.classList.remove('login-form__message_notice');
                 msg.style.opacity = 0;
+                return isAuth;
                 }, 2000);
             break;
 
