@@ -33,7 +33,7 @@ function Login(){
     const dataLogin = loginForm.login.value;
     const dataPassword = loginForm.password.value;
     const dataSave = loginForm.remember.checked;
-    console.log(dataSave);
+    
 
 
     for(admin of JSON.parse(localStorage.getItem('ADMINS'))){

@@ -6,8 +6,8 @@ const clientAddBtn = clients.querySelector('.clients__add_btn');
 const clientAddPopup = clients.querySelector('.clientAdd-popup');
 const clientAddPopupForm = clients.querySelector('.clientAdd-form');
 const clientAddFormBtn = clientAddPopupForm.querySelector('.clientAdd-form__button');
-const clientProjectsTable = clients.querySelector('.clients__table_projects');
-const clientProjectsBtn = clients.querySelectorAll('.clients__table_projectsBtn');
+const clientAddTable = clients.querySelector('.clients__table');
+
 
 //защита от входа без авторизации
 if(!localStorage.getItem('session')){
@@ -20,34 +20,80 @@ else if(JSON.parse(localStorage.getItem('session')).role !== 'admin'){
 
 
 
+function initClients(){
+    const clients = JSON.parse(localStorage.getItem('CLIENTS'));
+
+    clients.forEach(el=>{
+        let row = document.createElement('tr');
+        row.innerHTML=
+        `
+            <td>${el.Id}</td>
+            <td>${el.Company}</td>
+            <td>${el.Phone}</td>
+            <td>${el.Projects}</td>
+            <td><img src="icons/edit.svg" alt="иконка изменения"></td>
+            <td><img src="icons/remove.svg" alt="иконка удаления"></td>
+            <td><img class="clients__table_projectsBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
+        
+        `;
+
+        let projectsRow = document.createElement('tr');
+        projectsRow.classList.add('clients__table_projects');
+        projectsRow.innerHTML = 
+        `
+            <td colspan="6">
+            <table>
+
+                <tr class="clients__table_placeholder"><td rowspan="6">Проектов нет</td></tr>
+
+                <tr>
+                    <td>Добавить проект</td>
+                </tr>
+            </table>
+
+        </td>
+        `
+
+        clientAddTable.append(row, projectsRow);
+    });
+
+    const clientProjectsBtn = clientAddTable.querySelectorAll('.clients__table_projectsBtn');
+
+    clientProjectsBtn.forEach(el=>{
+
+        el.addEventListener('click', e=>{
+            clients.querySelectorAll('.clients__table_projects').forEach(elem=>{
+                elem.style.display = 'none';
+            });
+            
+            e.target.closest('tr').nextElementSibling.style.display = 'flex';
+        })
+    
+    });
+    
+    clientAddBtn.addEventListener('click', e=>{
+    
+        document.querySelector('.clientAdd-form__message').style.opacity = 0;
+    
+        if (!(clientAddPopup.classList.contains('active'))){
+            document.querySelector('.form-overlay').style.display = 'block';
+            clientAddPopup.classList.add('active');
+    
+        }
+    });
+};
+
+
+
 
 logOutBtn.addEventListener('click', ()=>{
     console.log('logout');
     localStorage.removeItem('session');
 });
 
-clientProjectsBtn.forEach(el=>{
+initClients();
 
-    el.addEventListener('click', e=>{
-        clients.querySelectorAll('.clients__table_projects').forEach(elem=>{
-            elem.style.display = 'none';
-        });
-        
-        e.target.closest('tr').nextElementSibling.style.display = 'flex';
-    })
 
-});
-
-clientAddBtn.addEventListener('click', e=>{
-
-    document.querySelector('.clientAdd-form__message').style.opacity = 0;
-
-    if (!(clientAddPopup.classList.contains('active'))){
-        document.querySelector('.form-overlay').style.display = 'block';
-        clientAddPopup.classList.add('active');
-
-    }
-});
 
 document.addEventListener('click', e => {
     if (!clientAddPopup.contains(e.target) && !clientAddBtn.contains(e.target)) {
@@ -61,7 +107,9 @@ clientAddFormBtn.addEventListener('click', e => {
     e.preventDefault();
     const form = clientAddFormBtn.closest('form');
     if (form.checkValidity()) {
-        validate("addClient",{"type":"company","element":clientAddPopupForm.company},{'type':'login',"element":clientAddPopupForm.login});
+        //validate("addClient",{"type":"company","element":clientAddPopupForm.company},{'type':'login',"element":clientAddPopupForm.login});
+        CreateClient();
+        initClients();
     } else {
         form.reportValidity();
     }

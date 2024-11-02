@@ -1,7 +1,10 @@
+const DB = "js/ClientsInteraction.json";
+
+
 function InitLocalStorage(){
 
 
-    fetch('js/ClientsInteraction.json')
+    fetch(DB)
     .then(response => response.json())
     .then(data => {
         for(elem of data){
@@ -37,21 +40,23 @@ function InitLocalStorage(){
 
 }
 
-function UpdateJSONdb() {
-    const data = [];
 
-    const tables = ['ADMINS', 'CLIENTS', 'PROJECTS', 'APPLICATIONS', 'STATUSES'];
 
-    tables.forEach(table => {
-        const tableData = localStorage.getItem(table);
-        if (tableData) {
-            data.push({
-                type: 'table',
-                name: table.toLowerCase(),
-                data: JSON.parse(tableData)
-            });
-        }
-    });
+// function UpdateJSONdb() {
+//     const data = [];
 
-    return data;
-}
+//     const tables = ['ADMINS', 'CLIENTS', 'PROJECTS', 'APPLICATIONS', 'STATUSES'];
+
+//     tables.forEach(table => {
+//         const tableData = localStorage.getItem(table);
+//         if (tableData) {
+//             data.push({
+//                 type: 'table',
+//                 name: table,
+//                 data: JSON.parse(tableData)
+//             });
+//         }
+//     });
+
+//     return data;
+// }

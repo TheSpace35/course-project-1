@@ -791,37 +791,30 @@ button a {
 }
 
 
-.login-form{
+.login-form, .clientAdd-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.login-form__input{
+.login-form__input, .clientAdd-form__input{
   border-radius: 20px;
   width: 500px;
   height: 70px;
 }
 
-.clientAdd-form{
+.clientAdd-form, .login-form{
   display: flex;
   flex-direction: column;
 }
 
 
 
-.login-popup{
+.login-popup, .clientAdd-popup, .application-popup, .deactive, .clientEdit-popup{
   display: none;
 }
 
-.application-popup{
-  display: none;
-}
-
-.clientAdd-popup{
-  display: none;
-}
 
 .active{
   display: flex;
@@ -914,3 +907,33 @@ tbody{
 .clients__table_projects{
   display: none;
 }
+
+input[type='checkbox']{
+  appearance: none;
+  background-color:#D9EFEB;
+  width: 31px;
+  height: 31px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+input[type='checkbox']:checked{
+  background-image: url('../icons/checkboxActive.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-form__button, .clientAdd-form__button{
+  background-color:#F8D57E;
+  width: 175px;
+  height: 50px;
+  border-radius: 15px;
+  border-style: none;
+}
+
+.login-form__input, .clientAdd-form__input{
+  border: 3px solid black;
+}
+
+
+

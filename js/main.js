@@ -1,6 +1,6 @@
 InitLocalStorage();
 
-UpdateJSONdb();
+// UpdateJSONdb();
 
 
 const loginMenuBtn = document.querySelector('.loginBtn');
