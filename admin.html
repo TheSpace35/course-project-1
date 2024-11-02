@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Администратор</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- js -->
+    <script defer src="js/DataBase.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/admin.js"></script>
+
+
+</head>
+<body>
+    <header>
+        <button class="settingsBtn btn"><img src="icons/settings.svg" alt="настройки"></button>
+        <h1 class="adminTitle title">ЗАЯВКИ</h1>
+        <a href="./index.html"><button class="logOutBtn btn">ВЫХОД</button></a>
+    </header>
+
+    <main>
+        <section class="adminSettings settings">
+
+        </section>
+
+        <section class="applications">
+
+            <table class="applications__table">
+                <tr>
+
+                    <th>id</th>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                    <th>Сообщение</th>
+
+                </tr>
+
+                <tr>
+                    <td>001</td>
+                    <td>Михаил</td>
+                    <td>+79661234312</td>
+                    <td>Не обработано</td>
+                    <td><img src="icons/complete.svg" alt="иконка заверения"></td>
+                    <td><img src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
+
+                    <tr class="applications__table_message">
+                        <td colspan="6">
+
+                            <p class="applications__table_message_placeholder">Дополнительного сообщеня нет</p>
+
+                        </td>
+                    </tr>
+                </tr>
+
+
+                <tr class="applications__table_placeholder" aria-colspan="6">Заявлений нет</tr>
+            </table>
+
+        </section>
+
+        <section class="clients">
+
+            <button class="clients__add_btn">Добавить</button>
+
+            <div class="form-overlay"></div>
+            <div class="clientAdd-popup popup">
+                <h2>Добавление клиента</h2>
+                <form method="post" class="clientAdd-form">
+                    <label for="company" class="clientAdd-form__label">Название компании:</label>
+                    <input type="text" name="company" class="clientAdd-form__input">
+                    <label for="company" class="clientAdd-form__label_error">Ошибка</label>
+        
+                    <label for="phone" class="clientAdd-form__label">Номер телефона</label>
+                    <input type="text" name="phone" class="clientAdd-form__input">
+                    <label for="phone" class="clientAdd-form__label_error">Ошибка</label>
+
+                    <label for="email" class="clientAdd-form__label">Email</label>
+                    <input type="text" name="email" class="clientAdd-form__input">
+                    <label for="email" class="clientAdd-form__label_error">Ошибка</label>
+
+                    <label for="login" class="clientAdd-form__label">Логин</label>
+                    <input type="text" name="login" class="clientAdd-form__input">
+                    <label for="login" class="clientAdd-form__label_error">Ошибка</label>
+        
+                    <button class="clientAdd-form__button">Добавить</button>
+        
+                    <p class="clientAdd-form__message">Клиент добавлен, пароль отправлен на Email!</p>
+                </form>
+            </div>
+
+            <table class="clients__table">
+                <tr>
+
+                    <th>id</th>
+                    <th>Название компании</th>
+                    <th>Номер телефона</th>
+                    <th>Уведомления</th>
+                    <th>Изменение</th>
+                    <th>Удаление</th>
+                    <th>Проекты</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>001</td>
+                    <td>ООО "Golden Cat"</td>
+                    <td>0</td>
+                    <td><img src="icons/edit.svg" alt="иконка изменения"></td>
+                    <td><img src="icons/remove.svg" alt="иконка удаления"></td>
+                    <td><img class="clients__table_projectsBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
+
+                    <tr class="clients__table_projects">
+                        <td colspan="6">
+                            <table>
+                                <tr class="clients__table_projects_001-1"> <!-- 001 - id клиента, 1 - id проекта -->
+                                    <td>1</td>
+                                    <td>Мобильное приложение</td>
+                                    <td>Разработка дизайн-макета</td>
+                                    <td>0</td>
+                                </tr>
+        
+                                <tr class="clients__table_projects_001-2"> <!-- 001 - id клиента, 2 - id проекта -->
+                                    <td>1</td>
+                                    <td>Мобильное приложение</td>
+                                    <td>Разработка дизайн-макета</td>
+                                    <td>0</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Добавить проект</td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+
+
+                </tr>
+
+
+                <tr>
+
+                    <td>002</td>
+                    <td>ООО "Golden Cat"</td>
+                    <td>0</td>
+                    <td><img src="icons/edit.svg" alt="иконка изменения"></td>
+                    <td><img src="icons/remove.svg" alt="иконка удаления"></td>
+                    <td><img class="clients__table_projectsBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
+
+                    <tr class="clients__table_projects">
+                        <td colspan="6">
+                            <table>
+                                <tr class="clients__table_placeholder"><td rowspan="6">Клиентов нет</td></tr>
+
+                                <tr>
+                                    <td>Добавить проект</td>
+                                </tr>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+                    
+
+                </tr>
+
+
+
+                
+            </table>
+
+        </section>
+
+
+    </main>
+</body>
+</html>
