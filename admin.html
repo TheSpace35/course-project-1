@@ -21,9 +21,11 @@
 </head>
 <body>
     <header>
-        <button class="settingsBtn btn"><img src="icons/settings.svg" alt="настройки"></button>
-        <h1 class="adminTitle title">ЗАЯВКИ</h1>
-        <a href="./index.html"><button class="logOutBtn btn">ВЫХОД</button></a>
+        
+        <button class="settingsBtn btn button"><img src="icons/settings.svg" alt="настройки"></button>
+        <h1 class="adminTitle title">КЛИЕНТЫ</h1>
+        <button class="changeMode btn button">ЗАЯВКИ</button>
+        <a href="./index.html"><button class="logOutBtn btn button">ВЫХОД</button></a>
     </header>
 
     <main>
@@ -45,32 +47,37 @@
 
                 </tr>
 
+
                 <tr>
                     <td>001</td>
                     <td>Михаил</td>
                     <td>+79661234312</td>
                     <td>Не обработано</td>
-                    <td><img src="icons/complete.svg" alt="иконка заверения"></td>
-                    <td><img src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
+                    <td><img class="applications__table_CompleteBtn" src="icons/complete.svg" alt="иконка заверения"></td>
+                    <td><img class="applications__table_MsgBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
 
                     <tr class="applications__table_message">
+
                         <td colspan="6">
-
-                            <p class="applications__table_message_placeholder">Дополнительного сообщеня нет</p>
-
+                            <table>
+                                
+                                <tr class="applications__table_message_text"><td rowspan="6">Дополнительного сообщеня нет</td></tr>
+                
+                            </table>
+                
                         </td>
+
                     </tr>
-                </tr>
 
 
-                <tr class="applications__table_placeholder" aria-colspan="6">Заявлений нет</tr>
+                <!-- <tr class="applications__table_placeholder" aria-colspan="6">Заявлений нет</tr> -->
             </table>
 
         </section>
 
         <section class="clients">
 
-            <button class="clients__add_btn">Добавить</button>
+            <button class="clients__add_btn btn button">Добавить</button>
 
             <div class="form-overlay"></div>
             <div class="clientAdd-popup popup">
@@ -178,7 +185,7 @@
 
                     
 
-                </tr>  --> -->
+                </tr>  --> 
 
 
 

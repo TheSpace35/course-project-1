@@ -1,5 +1,7 @@
 InitLocalStorage();
 
+let mode = 'clients';
+
 const logOutBtn = document.querySelector('.logOutBtn');
 const applications = document.querySelector('.applications');
 const clients = document.querySelector('.clients');
@@ -10,6 +12,8 @@ const clientAddPopupForm = clients.querySelector('.clientAdd-form');
 const clientAddFormBtn = clientAddPopupForm.querySelector('.clientAdd-form__button');
 const clientAddTable = clients.querySelector('.clients__table');
 
+const changeMode = document.querySelector('.changeMode');
+
 
 //защита от входа без авторизации
 if(!localStorage.getItem('session')){
@@ -19,6 +23,32 @@ if(!localStorage.getItem('session')){
 else if(JSON.parse(localStorage.getItem('session')).role !== 'admin'){
     location.href = '/index.html';
 }
+
+
+
+changeMode.addEventListener('click', e=>{
+
+    if(mode === 'clients'){
+        e.target.textContent = 'КЛИЕНТЫ';
+        document.querySelector('.adminTitle').textContent = 'ЗАЯВКИ';
+        clients.style.display = 'none';
+        applications.style.display = 'flex';
+
+        mode = 'applications';
+    }
+    else{
+        e.target.textContent = 'ЗАЯВКИ';
+        document.querySelector('.adminTitle').textContent = 'КЛИЕНТЫ';
+        clients.style.display = 'flex';
+        applications.style.display = 'none';
+
+        mode = 'clients';
+    }
+
+    
+});
+
+
 
 
 
@@ -44,10 +74,10 @@ function initClients(){
         projectsRow.classList.add('clients__table_projects');
         projectsRow.innerHTML = 
         `
-            <td colspan="6">
+        <td colspan="7">
             <table>
 
-                <tr class="clients__table_placeholder"><td rowspan="6">Проектов нет</td></tr>
+                <tr class="clients__table_placeholder"><td rowspan="7">Проектов нет</td></tr>
 
                 <tr>
                     <td>Добавить проект</td>
@@ -94,7 +124,7 @@ else{
     initClients();
 };
 
-
+/// Меню ///
 
 clientAddBtn.addEventListener('click', e=>{
     clientAddFormBtn.removeAttribute('disabled');
@@ -115,6 +145,9 @@ document.addEventListener('click', e => {
         
     }
 });
+
+///
+
 
 clientAddFormBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -147,5 +180,24 @@ clientAddFormBtn.addEventListener('click', e => {
     }
 });
 
+
+/// Обработка открытия подменю для заявок ///
+
+const applicationMsgBtn = applications.querySelectorAll('.applications__table_MsgBtn');
+
+applicationMsgBtn.forEach(el=>{
+
+    el.addEventListener('click', e=>{
+        document.querySelectorAll('.applications__table_message').forEach(elem=>{
+            elem.style.display = 'none';
+        });
+        
+        e.target.closest('tr').nextElementSibling.style.display = 'flex';
+    })
+
+});
+
+
+///
 
 
