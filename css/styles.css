@@ -815,6 +815,10 @@ button a {
   display: none;
 }
 
+.clientAdd-form__label_error{
+  opacity: 0;
+}
+
 
 .active{
   display: flex;

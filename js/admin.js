@@ -118,11 +118,13 @@ document.addEventListener('click', e => {
 
 clientAddFormBtn.addEventListener('click', e => {
     e.preventDefault();
+    
     const form = clientAddFormBtn.closest('form');
+    form.querySelectorAll('.clientAdd-form__label_error').forEach(e=> e.style.opacity = 0);
     if (form.checkValidity()) {
         
         if(validate("addClient",{"type":"company","element":clientAddPopupForm.company},{"type":"phone","element":clientAddPopupForm.phone},{"type":"email","element":clientAddPopupForm.email},{'type':'login',"element":clientAddPopupForm.login}).length > 0){
-            
+
         }
 
         else{

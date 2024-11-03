@@ -27,8 +27,8 @@ function validate(formType, ...fields){
                         for(admin of JSON.parse(localStorage.getItem('ADMINS'))){
 
                             if(admin.Login === field.element.value){
-
-                                console.log(field.element.nextElementSibling);
+                                field.element.nextElementSibling.style.opacity = 1;
+                                field.element.nextElementSibling.textContent = 'Логин уже сущетвует!';
 
                                 errors.push({type:'login'});
                                 break;
@@ -41,7 +41,9 @@ function validate(formType, ...fields){
 
                             if(client.Login === field.element.value){
 
-                                console.log(field.element.nextElementSibling);
+
+                                field.element.nextElementSibling.style.opacity = 1;
+                                field.element.nextElementSibling.textContent = 'Логин уже сущетвует!';
                                 errors.push({type:'login'});
                                 break;
                             }
@@ -58,6 +60,8 @@ function validate(formType, ...fields){
                             field.element.value = field.element.value.slice(1);
                         }
                         if (!phonePattern.test(field.element.value)) {
+                            field.element.nextElementSibling.style.opacity = 1;
+                            field.element.nextElementSibling.textContent = 'Логин уже сущетвует!';
                             errors.push({type:'phone'});
                             break;
                         }
