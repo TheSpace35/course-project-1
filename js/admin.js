@@ -120,17 +120,26 @@ clientAddFormBtn.addEventListener('click', e => {
     e.preventDefault();
     const form = clientAddFormBtn.closest('form');
     if (form.checkValidity()) {
-        //validate("addClient",{"type":"company","element":clientAddPopupForm.company},{'type':'login',"element":clientAddPopupForm.login});
-        clientAddFormBtn.setAttribute('disabled', 'disabled');
-        CreateClient();
-        document.querySelector('.clientAdd-form__message').style.opacity = 1;
+        
+        if(validate("addClient",{"type":"company","element":clientAddPopupForm.company},{"type":"phone","element":clientAddPopupForm.phone},{"type":"email","element":clientAddPopupForm.email},{'type':'login',"element":clientAddPopupForm.login}).length > 0){
+            
+        }
 
-        setTimeout(()=>{
-            clientAddPopup.classList.remove('active');
-            document.querySelector('.form-overlay').style.display = 'none';
+        else{
 
-        }, 2000)
-        initClients();
+            clientAddFormBtn.setAttribute('disabled', 'disabled');
+            CreateClient();
+            document.querySelector('.clientAdd-form__message').style.opacity = 1;
+    
+            setTimeout(()=>{
+                clientAddPopup.classList.remove('active');
+                document.querySelector('.form-overlay').style.display = 'none';
+    
+            }, 2000)
+            initClients();
+
+
+        }
     } else {
         form.reportValidity();
     }

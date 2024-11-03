@@ -3,17 +3,24 @@
 
 function validate(formType, ...fields){
 
+    let errors = [];
+
+    
+
+
+
 
 
     fields.forEach(field => {
+        console.log(formType, field.element);
         switch (formType) {
            
             case 'addClient' || 'editClient':
 
                 switch(field.type){
                     case 'company':
-                        console.log(field.element);
                         break;
+                    
 
                     case 'login':
 
@@ -22,7 +29,11 @@ function validate(formType, ...fields){
                             if(admin.Login === field.element.value){
 
                                 console.log(field.element.nextElementSibling);
+
+                                errors.push({type:'login'});
                                 break;
+                       
+
                             }
                         }
 
@@ -31,11 +42,44 @@ function validate(formType, ...fields){
                             if(client.Login === field.element.value){
 
                                 console.log(field.element.nextElementSibling);
+                                errors.push({type:'login'});
                                 break;
                             }
                         }
 
                         break;
+
+                    
+
+                    case 'phone':
+
+                        const phonePattern = /^\d{11}$/;
+                        if(field.element.value[0] === '+') { 
+                            field.element.value = field.element.value.slice(1);
+                        }
+                        if (!phonePattern.test(field.element.value)) {
+                            errors.push({type:'phone'});
+                            break;
+                        }
+
+                        field.element.value = '+' + field.element.value
+
+                        
+
+                        break;
+
+                     
+
+                    case 'email':
+
+                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailPattern.test(field.element.value)) {
+                            errors.push({type:'email'});
+                            break;
+                        }
+
+                        break;
+                    
 
                 }
 
@@ -50,7 +94,10 @@ function validate(formType, ...fields){
         }
     });
 
+    return errors;
+
 
 
 }
+
 
