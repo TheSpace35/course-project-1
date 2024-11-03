@@ -817,6 +817,7 @@ button a {
 
 .clientAdd-form__label_error{
   opacity: 0;
+  color: red;
 }
 
 
@@ -844,7 +845,7 @@ button a {
   opacity: 0;
 }
 
-.login-form__message_notice{
+.login-form__message_notice, .clientAdd-form__message{
   color: green;
 
 }
