@@ -124,7 +124,7 @@ else{
     initClients();
 };
 
-/// Меню ///
+/// Окно добавление клиентов ///
 
 clientAddBtn.addEventListener('click', e=>{
     clientAddFormBtn.removeAttribute('disabled');

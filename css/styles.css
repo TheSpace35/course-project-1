@@ -813,21 +813,45 @@ button a {
 
 }
 
+.application-popup{
+  width:  1228px;
+  height: 670px;
+  left: 10%;
+}
 
-.login-form, .clientAdd-form{
+
+.login-form, .clientAdd-form, .application-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.login-form__input, .clientAdd-form__input{
+.login-form__input, .clientAdd-form__input, .application-form__input{
   border-radius: 20px;
   width: 500px;
   height: 70px;
 }
 
-.clientAdd-form, .login-form{
+.clientAdd-form, .login-form, .application-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.area{
+  width: 500px;
+  height: 212px;
+}
+
+.application-form_mainPart{
+  display: flex;
+  flex-direction: row;
+  column-gap: 70.5px;
+
+}
+
+.application-form_part{
+  
   display: flex;
   flex-direction: column;
 }
@@ -953,7 +977,7 @@ input[type='checkbox']:checked{
   background-position: center;
 }
 
-.login-form__button, .clientAdd-form__button{
+.login-form__button, .clientAdd-form__button, .application-form__button{
   background-color:#F8D57E;
   width: 175px;
   height: 50px;

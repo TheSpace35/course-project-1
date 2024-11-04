@@ -18,10 +18,7 @@ function validate(formType, ...fields){
             case 'addClient' || 'editClient':
 
                 switch(field.type){
-                    case 'company':
-                        break;
                     
-
                     case 'login':
 
                         for(admin of JSON.parse(localStorage.getItem('ADMINS'))){
@@ -107,6 +104,55 @@ function validate(formType, ...fields){
                 break;
 
             case 'addProject' || 'editProject':
+
+                switch(field.type){
+
+                };
+
+                break;
+
+            case 'application':
+
+                switch(field.type){
+
+
+                    case 'phone':
+
+                        const phonePattern = /^\d{11}$/;
+                        if(field.element.value[0] === '+') { 
+                            field.element.value = field.element.value.slice(1);
+                        }
+                        if (!phonePattern.test(field.element.value)) {
+                            field.element.nextElementSibling.style.opacity = 1;
+                            field.element.nextElementSibling.textContent = 'Неверный формат номера телефона';
+                            errors.push({type:'phone'});
+                            break;
+                        }
+
+                        field.element.value = '+' + field.element.value;
+
+                        
+
+                        break;
+
+                    case 'name':
+                        const namePattern = /^[A-Za-z]*(\s[A-Za-z]*)*$/;
+                        if (!namePattern.test(field.element.value)) {
+                            field.element.nextElementSibling.style.opacity = 1;
+                            field.element.nextElementSibling.textContent = 'Имя не должно содержать цифр или спец.символов';
+                            errors.push({type: 'nameFormat'});
+                            break;
+                        }
+
+                        break;
+
+
+                };
+
+
+
+            
+
 
                 break;
 

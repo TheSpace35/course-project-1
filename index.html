@@ -31,6 +31,7 @@
 <body>
 
 <div class="form-overlay"></div>
+<!-- Окно авторизации -->
     <div class="login-popup popup">
         <h2>Вход</h2>
         <form method="post" class="login-form">
@@ -49,36 +50,37 @@
         </form>
     </div>
 
-
-    <div class="application-popup popup">
-        <h2>Заказать звонок</h2>
-        <form method="post" class="application-form">
-            <label for="name" class="application-form__label">Логин:</label>
-            <input type="text" name="login" class="application-form__input" required>
-
-            <label for="password" class="application-form__label">Пароль:</label>
-            <input type="text" name="password" class="application-form__input" required>
-
-            <label for="" class="application-form__label">Пароль:</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <input type="textarea" name="password" class="application-form__input" required>
-
-            <button type="submit" class="application-form__button">Отправить</button>
-
-        </form>
-    </div>
-
-
+<!-- Окно заявки на обратную связь -->
     <div class="application-popup popup">
         <h2>Заказать звонок</h2>
         <form method="post" class="application-form">
 
+            <div class="application-form_mainPart">
+
+                <div class="application-form_part">
+                    <label for="name" class="application-form__label">Имя:</label>
+                    <input type="text" name="name" class="application-form__input" required>
+                    <label for="name" class="application-form__label_error">Ошибка</label>
+        
+                    <br><label for="phone" class="application-form__label">Телефон:</label>
+                    <input type="phone" name="phone" class="application-form__input" required>
+                    <label for="phone" class="application-form__label_error">Ошибка</label>
+                </div>
+    
+                <div class="application-form_part">
+                    <label for="message" class="application-form__label">Сообщение:</label>
+                    <textarea class="application-form__input area" name="message" cols="30" rows="10" maxlength="255"></textarea>
+                </div>
+
+            </div>
 
             <button type="submit" class="application-form__button">Отправить</button>
+
+            <p class="application-form__message">Заявка отправлена!</p>
+
+
         </form>
     </div>
-
- 
 
 
 
@@ -90,7 +92,7 @@
             <a class="nav-item text" href="index.html">о компании</a>
             <a class="nav-item text" href="index.html">где мы находимся</a>
         </nav>
-        <form class="call-button" action="#footer"><button class="button text">связаться с нами</button></form>
+        <button class="applicationBtn btn button text">связаться с нами</button>
         <button class="button text loginBtn">Личный кабинет</button>
 
 
@@ -206,7 +208,7 @@
         <div class="separator"></div>
         <div class="footer-part-one">
             <h1 class="footer-part-one__footer-title section-title">Заинтересовали?<br>Остались вопросы?</h1>
-            <form class="call-button" action="#footer"><button class="button text">связаться с нами</button></form>
+            <a href="#header"><button class="applicationBtn btn button text">связаться с нами</button></a>
 
         <div class="footer-part-two">
             <div class="separator"></div>
