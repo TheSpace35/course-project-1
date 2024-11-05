@@ -56,6 +56,7 @@ function Login(){
                 location.href = "./admin.html";
                 msg.classList.remove('login-form__message_notice');
                 msg.style.opacity = 0;
+                
                 }, 2000);
             isAuth = 1;
             break;

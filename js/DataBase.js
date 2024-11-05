@@ -52,6 +52,23 @@ function InitLocalStorage(){
 }
 
 
+/// Получение данных из localStorage
+function getData(tableName, field){
+    let data = [];
+    const table = JSON.parse(localStorage.getItem(tableName));
+    table.forEach(element => {
+        console.log(typeof parseInt(element[field]));
+        data.push(parseInt(element[field]));
+    });
+
+    console.log(data);
+
+    return data;
+};
+
+/// 
+
+
 
 
 

@@ -1,15 +1,5 @@
 // система регистрации клиентов
 
-function getData(tableName, field){
-    let data = [];
-    const table = JSON.parse(localStorage.getItem(tableName));
-    table.forEach(element => {
-        console.log(typeof parseInt(element[field]));
-        data.push(parseInt(element[field]));
-    });
-
-    return data;
-};
 
 function generatePass() {
     const symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
@@ -49,7 +39,6 @@ function generatePass() {
 
 
 function CreateClient(){
-    console.log('enter1');
     let client = {"Id":Math.max(...getData('CLIENTS','Id'))+1,
                 "Company":`${clientAddPopupForm.company.value}`,
                 "Login":`${clientAddPopupForm.login.value}`,
@@ -59,10 +48,11 @@ function CreateClient(){
                 "Email":`${clientAddPopupForm.email.value}`,
                 "AcceptCalls":"1"
             }
-    console.log('exit 1');
+  
     let clients = JSON.parse(localStorage.getItem('CLIENTS'));
     clients.push(client);
     localStorage.setItem('CLIENTS',JSON.stringify(clients));
+    /// ВРЕМЕННО
     console.log(`Логин: ${client.Login} Пароль: ${client.Password}`);
 }
 

@@ -44,6 +44,7 @@ loginBtn.addEventListener('click', e => {
         if(Login() === 1){
             loginPopup.classList.remove('active');
             document.querySelector('.form-overlay').style.display = 'none';
+            form.reset();
         }
 
     } else {
@@ -75,12 +76,40 @@ document.querySelector('.form-overlay').addEventListener('click', e => {
 
 ///
 
+function createApplication(){
+    const form = applicationBtn.closest('form');
+    const application = {
+        "id":(Math.max(...getData('APPLICATIONS','id')))+1,
+        "Name":`${form.name.value}`,
+        "Phone":`${form.phone.value}`,
+        "Message":`${form.message.value}`,
+        "Status":"Не обработано"};
+    let applications = JSON.parse(localStorage.getItem('APPLICATIONS'));
+    applications.push(application);
+    localStorage.setItem('APPLICATIONS',JSON.stringify(applications));
+
+}
+
 /// Обработка кнопки отправки заявки ///
 
 applicationBtn.addEventListener('click', e => {
     e.preventDefault();
     const form = applicationBtn.closest('form');
+    form.querySelectorAll('.application-form__label_error').forEach(e=> e.style.opacity = 0);
     if (form.checkValidity()) {
+        if(!validate('application',{'type':'name','element':form.name},{'type':'phone','element':form.phone}).length > 0){
+            applicationBtn.setAttribute('disabled', 'disabled');
+            createApplication();
+            document.querySelector('.application-form__message').style.opacity = 1;
+    
+            setTimeout(()=>{
+                applicationPopup.classList.remove('active');
+                document.querySelector('.form-overlay').style.display = 'none';
+                form.reset();
+    
+            }, 2000)
+        }
+
 
     } else {
         form.reportValidity();
