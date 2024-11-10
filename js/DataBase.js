@@ -69,6 +69,15 @@ function getData(tableName, field){
 /// 
 
 
+/// Получение таблицы из localStorage
+function getTable(tableName){
+    const table = JSON.parse(localStorage.getItem(tableName));
+    return table;
+};
+
+/// 
+
+
 
 
 

@@ -79,12 +79,12 @@ function initClients(){
         let row = document.createElement('tr');
         row.innerHTML=
         `
-            <td>${el.Id}</td>
+            <td class='clients__table_id'>${el.Id}</td>
             <td>${el.Company}</td>
             <td>${el.Phone}</td>
             <td>${el.Projects}</td>
             <td><img src="icons/edit.svg" alt="иконка изменения"></td>
-            <td><img src="icons/remove.svg" alt="иконка удаления"></td>
+            <td><img class='clients__table_remove' src="icons/remove.svg" alt="иконка удаления"></td>
             <td><img class="clients__table_projectsBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
         
         `;
@@ -140,6 +140,36 @@ function initClients(){
         })
     
     });
+
+
+    /// Удаление заявки //
+    clientAddTable.querySelectorAll('.clients__table_remove').forEach(el=>{
+
+        el.addEventListener('click', e=>{
+            let projects = getTable('PROJECTS');
+            let clients = getTable('CLIENTS');
+            projects.forEach(p=>{
+                if(p.ClientID === el.closest('tr').querySelector('.clients__table_id').textContent){
+                    projects = projects.filter(p => p.id !== el.closest('tr').querySelector('.clients__table_id').textContent);
+                    localStorage.setItem('PROJECTS', JSON.stringify(projects));
+                }
+            });
+
+            clients.forEach(c=>{
+                if(c.Id === el.closest('tr').querySelector('.clients__table_id').textContent){
+                    clients = clients.filter(c => c.Id !== el.closest('tr').querySelector('.clients__table_id').textContent);
+                    localStorage.setItem('CLIENTS', JSON.stringify(clients));
+                }
+            })
+            e.target.closest('tr').nextElementSibling.remove();
+            e.target.closest('tr').remove();
+            
+        });
+
+
+    });
+
+    ///
     
 };
 
@@ -168,7 +198,7 @@ function initApplications(){
         
         row.innerHTML=
         `
-            <td>${el.id}</td>
+            <td class='applications__table_id'>${el.id}</td>
             <td>${el.Name}</td>
             <td>${el.Phone}</td>
             <td>${el.Status}</td>
@@ -193,6 +223,8 @@ function initApplications(){
         </td>
         `
 
+
+
         applicationsTable.append(row, messageRow);
     });
 
@@ -205,8 +237,36 @@ function initApplications(){
             
             e.target.closest('tr').nextElementSibling.style.display = 'flex';
         })
+
+
     
     });
+
+    /// Удаление заявки //
+    applicationsTable.querySelectorAll('.applications__table_RemoveBtn').forEach(el=>{
+
+        el.addEventListener('click', e=>{
+            let applications = getTable('APPLICATIONS');
+            applications.forEach(app=>{
+                if(app.id === el.closest('tr').querySelector('.applications__table_id').textContent){
+                    applications = applications.filter(app => app.id !== el.closest('tr').querySelector('.applications__table_id').textContent);
+                    localStorage.setItem('APPLICATIONS', JSON.stringify(applications));
+
+                }
+            })
+            console.log(e.target.closest('tr'));
+            e.target.closest('tr').nextElementSibling.remove();
+            e.target.closest('tr').remove();
+            
+        });
+
+
+    });
+
+    ///
+
+
+
     
 };
 
@@ -301,5 +361,6 @@ applicationMsgBtn.forEach(el=>{
 
 
 ///
+
 
 
