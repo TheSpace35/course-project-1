@@ -12,6 +12,10 @@ const clientAddPopupForm = clients.querySelector('.clientAdd-form');
 const clientAddFormBtn = clientAddPopupForm.querySelector('.clientAdd-form__button');
 const clientAddTable = clients.querySelector('.clients__table');
 
+const projectAddPopup = clients.querySelector('.projectAdd-popup');
+const projectAddForm = projectAddPopup.querySelector('.projectAdd-form');
+const projectAddFormBtn = projectAddForm.querySelector('.projectAdd-form__button');
+
 const applicationsTable = applications.querySelector('.applications__table');
 
 const changeMode = document.querySelector('.changeMode');
@@ -73,7 +77,7 @@ function initClients(){
     
     `
 
-    const clients = JSON.parse(localStorage.getItem('CLIENTS'));
+    const clients = JSON.parse(localStorage.getItem('CLIENTS')) || [];
 
     clients.forEach(el=>{
         let row = document.createElement('tr');
@@ -95,8 +99,9 @@ function initClients(){
         `<td colspan="7">
             <table>
                 ${JSON.parse(localStorage.getItem('PROJECTS')).filter(project => project.ClientID === el.Id).map(project => {
-                    const statusAndNotice = JSON.parse(localStorage.getItem('STATUSES')).find(s => s.ProjectID === project.id) || {};
-                    // console.log(project);
+                    const statusAndNotice = (JSON.parse(localStorage.getItem('STATUSES')).find(s => s.ProjectID === project.id) || {});
+                    console.log(project);
+                    console.log(statusAndNotice);
                  
                     return `
                     <tr class="clients__table_projects_project">
@@ -105,7 +110,7 @@ function initClients(){
                         <td>${statusAndNotice.StatusName}</td>
                         <td>${statusAndNotice.ClientAccept}</td>
                 </tr>`
-                }).join('')}
+                }).join('')} || [];
                 ${JSON.parse(localStorage.getItem('PROJECTS')).filter(project => project.ClientID === el.Id).length === 0 ? `<tr class="clients__table_placeholder"><td rowspan="7">Проектов нет</td></tr>` : ``}
 
                 <tr>
@@ -135,14 +140,86 @@ function initClients(){
             document.querySelectorAll('.clients__table_projects').forEach(elem=>{
                 elem.style.display = 'none';
             });
+
+            clientProjectsBtn.forEach(m => {
+                m.style.transform = '';
+            })
+
+            e.target.style = `
+                transform: rotate(180deg);
+            `;
             
             e.target.closest('tr').nextElementSibling.style.display = 'flex';
         })
     
     });
 
+    /// Окно добавление проекта ///
+    let clientId = 0;
 
-    /// Удаление заявки //
+    const projectAddBtn = document.querySelectorAll('.clients__table_addProjectBtn');
+    projectAddBtn.forEach(btn=>{btn.addEventListener('click', e=>{
+        clientId = e.target.closest('tr').closest('td').closest('tr').previousElementSibling.querySelector('.clients__table_id').textContent;
+        projectAddFormBtn.removeAttribute('disabled');
+        
+        document.querySelector('.projectAdd-form__message').style.opacity = 0;
+
+        if (!projectAddPopup.classList.contains('active')){
+            document.querySelector('.form-overlay').style.display = 'block';
+            projectAddPopup.classList.add('active');
+            projectsTable = e.target.closest('.clients__table_projects');
+   
+
+        }
+    })});
+
+    document.addEventListener('click', e => {
+        
+        if (!projectAddPopup.contains(e.target) && ![...projectAddBtn].some(el => el.contains(e.target))) {
+            projectAddPopup.classList.remove('active');
+            clientId = 0;
+            document.querySelector('.form-overlay').style.display = 'none';
+            
+        }
+    });
+
+    ///
+
+    /// Обработка кнрпки добавления проекта ///
+
+    projectAddFormBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const form = e.target.closest('form');
+        form.querySelectorAll('.application-projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
+        if (form.checkValidity()) {
+            if(!validate('addProject',{'type':'name','element':form.name}).length > 0){
+                e.target.setAttribute('disabled', 'disabled');
+                
+                document.querySelector('.projectAdd-form__message').style.opacity = 1;
+                console.log(clientId);
+                AddProject(clientId);
+        
+                setTimeout(()=>{
+                    projectAddPopup.classList.remove('active');
+                    document.querySelector('.form-overlay').style.display = 'none';
+                    initClients();
+                    form.reset();
+        
+                }, 2000)
+            }
+    
+    
+        } else {
+            form.reportValidity();
+        }
+    });
+
+    ///
+    
+
+
+    /// Удаление клиента //
+
     clientAddTable.querySelectorAll('.clients__table_remove').forEach(el=>{
 
         el.addEventListener('click', e=>{
@@ -201,7 +278,7 @@ function initApplications(){
             <td class='applications__table_id'>${el.id}</td>
             <td>${el.Name}</td>
             <td>${el.Phone}</td>
-            <td>${el.Status}</td>
+            <td class='applications__table_status'>${el.Status}</td>
             <td><img class="applications__table_${el.Status ==='Не обработано' ? 'CompleteBtn' : 'RemoveBtn'}" src="icons/${el.Status ==='Не обработано' ? 'complete' : 'remove'}.svg" alt="иконка ${el.Status ==='Не обработано' ? 'завершения' : 'удаление'}"></td>
             <td><img class="applications__table_MsgBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
         
@@ -231,9 +308,18 @@ function initApplications(){
     applicationsTable.querySelectorAll('.applications__table_MsgBtn').forEach(el=>{
 
         el.addEventListener('click', e=>{
-            document.querySelectorAll('.applications__table_message').forEach(elem=>{
+            applicationsTable.querySelectorAll('.applications__table_message').forEach(elem=>{
                 elem.style.display = 'none';
+                
             });
+
+            applicationsTable.querySelectorAll('.applications__table_MsgBtn').forEach(m => {
+                m.style.transform = '';
+            })
+
+            e.target.style = `
+                transform: rotate(180deg);
+            `;
             
             e.target.closest('tr').nextElementSibling.style.display = 'flex';
         })
@@ -241,6 +327,33 @@ function initApplications(){
 
     
     });
+
+
+    /// Закрытие заявки //
+    applicationsTable.querySelectorAll('.applications__table_CompleteBtn').forEach(el=>{
+
+        el.addEventListener('click', e=>{
+            let applications = getTable('APPLICATIONS');
+            applications.forEach(app=>{
+                if(app.id === el.closest('tr').querySelector('.applications__table_id').textContent){
+                    app.Status = 'Обработано';
+                    localStorage.setItem('APPLICATIONS', JSON.stringify(applications));
+
+                }
+            });
+
+            e.target.classList.remove('applications__table_CompleteBtn');
+            e.target.classList.add('applications__table_RemoveBtn');
+            e.target.src = 'icons/remove.svg';
+            e.target.closest('tr').querySelector('.applications__table_status').textContent = 'Обработано';
+            
+            
+        });
+
+
+    });
+
+    ///
 
     /// Удаление заявки //
     applicationsTable.querySelectorAll('.applications__table_RemoveBtn').forEach(el=>{
@@ -271,11 +384,7 @@ function initApplications(){
 };
 
 
-
-
-
 logOutBtn.addEventListener('click', ()=>{
-    console.log('logout');
     localStorage.removeItem('session');
 });
 
@@ -313,7 +422,7 @@ document.addEventListener('click', e => {
 
 ///
 
-
+/// Обработка добавления клиента ///
 clientAddFormBtn.addEventListener('click', e => {
     e.preventDefault();
     
@@ -341,26 +450,10 @@ clientAddFormBtn.addEventListener('click', e => {
         form.reportValidity();
     }
 });
-
-
-/// Обработка открытия подменю для заявок ///
-
-const applicationMsgBtn = applications.querySelectorAll('.applications__table_MsgBtn');
-
-applicationMsgBtn.forEach(el=>{
-
-    el.addEventListener('click', e=>{
-        document.querySelectorAll('.applications__table_message').forEach(elem=>{
-            elem.style.display = 'none';
-        });
-        
-        e.target.closest('tr').nextElementSibling.style.display = 'flex';
-    })
-
-});
-
-
 ///
+
+
+
 
 
 

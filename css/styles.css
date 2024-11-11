@@ -858,7 +858,7 @@ button a {
 
 
 
-.login-popup, .clientAdd-popup, .application-popup, .deactive, .clientEdit-popup{
+.login-popup, .clientAdd-popup, .application-popup, .deactive, .clientEdit-popup, .projectAdd-popup{
   display: none;
 }
 
@@ -1000,6 +1000,7 @@ input[type='checkbox']:checked{
  justify-content: center;
  margin-top: 10px;
  margin-bottom: 10px;
+
 }
 
 

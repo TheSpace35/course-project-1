@@ -13,6 +13,7 @@
     <!-- js -->
     <script defer src="js/DataBase.js"></script>
     <script defer src="js/validation.js"></script>
+    <script defer src="js/project.js"></script>
     <script defer src="js/register.js"></script>
     <script defer src="js/admin.js"></script>
 
@@ -102,6 +103,20 @@
                     <button class="clientAdd-form__button">Добавить</button>
         
                     <p class="clientAdd-form__message">Клиент добавлен, пароль отправлен на Email! (Можно просмотреть в консоли)</p>
+                </form>
+            </div>
+
+
+            <div class="projectAdd-popup popup">
+                <h2>Добавление проекта</h2>
+                <form method="post" class="projectAdd-form">
+                    <label for="company" class="projectAdd-form__label">Название проекта:</label>
+                    <input type="text" name="name" class="projectAdd-form__input" required>
+                    <label for="company" class="projectAdd-form__label_error">Ошибка</label>
+        
+                    <button class="projectAdd-form__button">Добавить</button>
+        
+                    <p class="projectAdd-form__message">Проект добавлен</p>
                 </form>
             </div>
 
