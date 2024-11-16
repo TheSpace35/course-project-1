@@ -4,14 +4,24 @@ if(!localStorage.getItem('session')){
 }
 
 else if(JSON.parse(localStorage.getItem('session')).role === 'admin'){
-    LoadInfo('admin', location.search);
-}
-
-else{
-
-    LoadInfo('client', location.search);
+    if(location.pathname === '/project.html' && parseInt(location.search.split('=')[1])>0){
+        LoadInfo('admin', location.search);
+    }
 
 }
+
+else if(JSON.parse(localStorage.getItem('session')).role === 'client') {
+
+
+    if(location.pathname === '/project.html' && parseInt(location.search.split('=')[1])>0){
+        LoadInfo('client', location.search);
+    }
+    
+
+}
+
+
+
 
 
 /// Добавлене проекта ///
@@ -43,6 +53,7 @@ function AddProject(clientId){
         "id":`${id}`,
         "ProjectName":`${projectAddForm.name.value}`,
         "ClientID":`${clientId}`,
+        "ProjectDescription":`${projectAddForm.description.value}`,
         "StatusHistory":AddStatus(id)
     }
 
@@ -65,8 +76,7 @@ function LoadInfo(role, projectId){
 
     console.log(project);
     document.querySelector('.projectTitle').textContent = `${project.ProjectName}`;
-    
-
-
+    document.querySelector('.companyName').textContent = `${JSON.parse(localStorage.getItem('CLIENTS')).find(el => el.Id == project.ClientID).Company}`;
+    document.querySelector('.projectDescription').textContent = `${project.ProjectDescription}`;
 
 }

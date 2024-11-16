@@ -1004,4 +1004,10 @@ input[type='checkbox']:checked{
 }
 
 
+.projectInfo__company{
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
 
