@@ -1,12 +1,26 @@
+//защита от входа без авторизации
+if(!localStorage.getItem('session')){
+    location.href = '/index.html';
+}
+
+else if(JSON.parse(localStorage.getItem('session')).role === 'admin'){
+    LoadInfo('admin', location.search);
+}
+
+else{
+
+    LoadInfo('client', location.search);
+
+}
+
+
 /// Добавлене проекта ///
-
-
 
 function AddStatus(projectId, statusName='Начат', comment='Начата работа над проектом', statusColor = "#FF4500"){
     let statuses = JSON.parse(localStorage.getItem('STATUSES'));
 
     let status = {
-        "id":Math.max(...getData('STATUSES','id'))+1,
+        "id":`${Math.max(...getData('STATUSES','id'))+1}`,
         "StatusName":`${statusName}`,
         "Comment":`${comment}`,
         "ClientAccept":"0",
@@ -26,9 +40,9 @@ function AddProject(clientId){
     const id = Math.max(...getData('STATUSES','id'))+1;
 
     let project = {
-        "id":id,
+        "id":`${id}`,
         "ProjectName":`${projectAddForm.name.value}`,
-        "ClientID":clientId,
+        "ClientID":`${clientId}`,
         "StatusHistory":AddStatus(id)
     }
 
@@ -42,3 +56,17 @@ function AddProject(clientId){
 
 
 ///
+
+
+function LoadInfo(role, projectId){
+    projectId = projectId.split('=')[1];
+    let project = JSON.parse(localStorage.getItem('PROJECTS'));
+    project = project.find(el => el.id == projectId);
+
+    console.log(project);
+    document.querySelector('.projectTitle').textContent = `${project.ProjectName}`;
+    
+
+
+
+}

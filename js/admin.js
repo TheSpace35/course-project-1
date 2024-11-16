@@ -98,10 +98,15 @@ function initClients(){
         projectsRow.innerHTML = 
         `<td colspan="7">
             <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Статус</th>
+                    <th>Уведомления</th>
+                    <th>Редактирование</th>
+                </tr>
                 ${JSON.parse(localStorage.getItem('PROJECTS')).filter(project => project.ClientID === el.Id).map(project => {
                     const statusAndNotice = (JSON.parse(localStorage.getItem('STATUSES')).find(s => s.ProjectID === project.id) || {});
-                    console.log(project);
-                    console.log(statusAndNotice);
                  
                     return `
                     <tr class="clients__table_projects_project">
@@ -109,8 +114,10 @@ function initClients(){
                         <td>${project.ProjectName}</td>
                         <td>${statusAndNotice.StatusName}</td>
                         <td>${statusAndNotice.ClientAccept}</td>
+                        <td><img src="icons/edit.svg" alt="иконка изменения"></td>
+                        
                 </tr>`
-                }).join('')} || [];
+                }).join('')};
                 ${JSON.parse(localStorage.getItem('PROJECTS')).filter(project => project.ClientID === el.Id).length === 0 ? `<tr class="clients__table_placeholder"><td rowspan="7">Проектов нет</td></tr>` : ``}
 
                 <tr>
@@ -196,7 +203,6 @@ function initClients(){
                 e.target.setAttribute('disabled', 'disabled');
                 
                 document.querySelector('.projectAdd-form__message').style.opacity = 1;
-                console.log(clientId);
                 AddProject(clientId);
         
                 setTimeout(()=>{
