@@ -197,7 +197,7 @@ function initClients(){
     projectAddFormBtn.addEventListener('click', e => {
         e.preventDefault();
         const form = e.target.closest('form');
-        form.querySelectorAll('.application-projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
+        form.querySelectorAll('.projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
         if (form.checkValidity()) {
             if(!validate('addProject',{'type':'name','element':form.name}).length > 0){
                 e.target.setAttribute('disabled', 'disabled');

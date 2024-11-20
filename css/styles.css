@@ -797,7 +797,6 @@ button a {
 }
 
 
-/*************  ✨ Codeium Command 🌟  *************/
 .popup{
   display: flex;
   justify-content: center;
@@ -811,27 +810,25 @@ button a {
   background-color: white;
   left: 50%;
   transform: translateX(-50%);
-  left: 30%;
   top: 20%;
 
 }
-/******  50110aeb-77dc-48c2-9dab-a2480adc1720  *******/
 
 .application-popup{
   width:  1228px;
   height: 670px;
-  left: 10%;
+ 
 }
 
 
-.login-form, .clientAdd-form, .application-form{
+.login-form, .clientAdd-form, .application-form, .projectAdd-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.login-form__input, .clientAdd-form__input, .application-form__input{
+.login-form__input, .clientAdd-form__input, .application-form__input, .projectAdd-form__input{
   border-radius: 20px;
   width: 500px;
   height: 70px;
@@ -862,7 +859,7 @@ button a {
 
 
 
-.login-popup, .clientAdd-popup, .application-popup, .deactive, .clientEdit-popup, .projectAdd-popup{
+.login-popup, .clientAdd-popup, .application-popup, .deactive, .clientEdit-popup, .projectAdd-popup, .projectAdd-popup{
   display: none;
 }
 
