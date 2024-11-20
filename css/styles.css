@@ -867,6 +867,10 @@ button a {
   color: red;
 }
 
+.application-form__message{
+  display: none;
+}
+
 
 .active{
   display: flex;
