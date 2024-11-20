@@ -58,6 +58,7 @@ loginBtn.addEventListener('click', e => {
 applicationMenuBtn.forEach(el => {
     el.addEventListener('click', e => {
         document.querySelector('.application-form__message').style.opacity = 0;
+        document.querySelectorAll('.application-form__label_error').forEach(e=> e.style.opacity = 0)
 
         if (!applicationPopup.classList.contains('active')) {
             applicationBtn.removeAttribute('disabled');
@@ -97,8 +98,8 @@ applicationBtn.addEventListener('click', e => {
     const form = applicationBtn.closest('form');
     form.querySelectorAll('.application-form__label_error').forEach(e=> e.style.opacity = 0);
     if (form.checkValidity()) {
-        console.log('c c');
-        if(!validate('application',{'type':'name','element':form.name},{'type':'phone','element':form.phone}).length > 0){
+        const validCheck = validate('application',{'type':'name','element':form.name},{'type':'phone','element':form.phone});
+        if(!validCheck.length > 0){
             applicationBtn.setAttribute('disabled', 'disabled');
             createApplication();
             console.log('заявка отправлена');
@@ -112,7 +113,25 @@ applicationBtn.addEventListener('click', e => {
             }, 2000)
         }
 
-        else{}
+        else{
+
+            console.log(validCheck);
+
+            validCheck.forEach(el => {
+
+                form.querySelectorAll('.application-form__input').forEach(e => {
+                    console.log(e.nextElementSibling);
+   
+                    if(e.name === el.type){
+                        e.nextElementSibling.style.opacity = 1;
+
+                    }
+                });
+               
+            });
+
+
+        }
 
 
     } else {
