@@ -12,7 +12,6 @@ function validate(formType, ...fields){
 
 
     fields.forEach(field => {
-        console.log(formType, field.element);
         switch (formType) {
            
             case 'addClient' || 'editClient':

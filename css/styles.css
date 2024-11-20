@@ -1016,7 +1016,7 @@ input[type='checkbox']:checked{
 }
 
 
-.popup {
+/* .popup {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1030,4 +1030,4 @@ input[type='checkbox']:checked{
   left: 50%;
   transform: translateX(-50%);
   top: 20%;
-}
+} */
