@@ -797,7 +797,6 @@ button a {
 }
 
 
-/*************  ✨ Codeium Command 🌟  *************/
 .popup{
   display: flex;
   justify-content: center;
@@ -811,11 +810,9 @@ button a {
   background-color: white;
   left: 50%;
   transform: translate(-50%, 0);
-  transform: translateX(-50%);
   top: 20%;
 
 }
-/******  3d8f86e7-a274-4b83-8530-9ceaf972501e  *******/
 
 .application-popup{
   width:  1228px;
@@ -1019,3 +1016,18 @@ input[type='checkbox']:checked{
 }
 
 
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  width: 630px;
+  height: 670px;
+  border-radius: 20px;
+  z-index: 100;
+  background-color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20%;
+}
