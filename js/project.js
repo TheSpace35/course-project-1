@@ -20,6 +20,11 @@ else if(JSON.parse(localStorage.getItem('session')).role === 'client') {
 
 }
 
+document.querySelector('.BackBtn').addEventListener('click', e => {
+    e.preventDefault();
+    location.href = '/admin.html';
+});
+
 
 
 
@@ -74,9 +79,37 @@ function LoadInfo(role, projectId){
     let project = JSON.parse(localStorage.getItem('PROJECTS'));
     project = project.find(el => el.id == projectId);
 
+
+    const statusHistory = JSON.parse(localStorage.getItem('STATUSES')).filter(el => el.ProjectID == projectId);
+
+   
+ 
+
     console.log(project);
     document.querySelector('.projectTitle').textContent = `${project.ProjectName}`;
     document.querySelector('.companyName').textContent = `${JSON.parse(localStorage.getItem('CLIENTS')).find(el => el.Id == project.ClientID).Company}`;
     document.querySelector('.projectDescription').textContent = `${project.ProjectDescription}`;
+    document.querySelector('.projectStatus').textContent = `${statusHistory[statusHistory.length-1].StatusName}`;
+
+    statusHistory.forEach(el=>{
+        let status = document.createElement('tr');
+        if(statusHistory.indexOf(el) === 0){
+            status.innerHTML = `
+            <td>${el.StatusName}</td>
+            <td>${el.Comment}</td>
+            <td><img src="/icons/complete.svg" alt="подтвердить"></td>
+            <td><img src="/icons/cancel.svg" alt="отклонить"></td>
+            `;
+        }
+        else{
+
+            status.innerHTML = `
+            <td>${el.StatusName}</td>
+            <td>${el.Comment}</td>
+            `;
+
+        }
+        document.querySelector('.projectStatusHistory__table').appendChild(status);
+        });
 
 }

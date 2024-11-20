@@ -30,9 +30,8 @@
 
     <header>
         
-        <button class="settingsBtn btn button"><img src="icons/settings.svg" alt="настройки"></button>
         <h1 class="projectTitle title">ПРОЕКТ</h1>
-        <button class="changeMode btn button">СПИСОК КЛИЕНТОВ</button>
+        <button class="BackBtn btn button">СПИСОК КЛИЕНТОВ</button>
         <a href="./index.html"><button class="logOutBtn btn button">ВЫХОД</button></a>
     </header>
 
@@ -49,15 +48,19 @@
                 <p class="projectDescription">Описание проекта</p> 
             </div>
 
+            <div class="projectInfo__status">
+                <h2>Текущий статус:</h2>
+                <p class="projectStatus">Текущий статус</p> 
+            </div>
+
         </section>
 
         <section class="projectStatusHistory">
-            <table>
+            <table class="projectStatusHistory__table">
                 <tr>
-                    <td>Статус</td>
-                    <td><p>Комментарий</p></td>
-                    <td><img src="/icons/complete.svg" alt="подтвердить"></td>
-                    <td><img src="/icons/cancel.svg" alt="отклонить"></td>
+                    <th>Статус</th>
+                    <th><p>Комментарий</p></th>
+                    <th rowspan="2">Действия</th>
                 </tr>
             </table>
 

@@ -164,6 +164,8 @@ function initClients(){
     /// Окно добавление проекта ///
     let clientId = 0;
 
+    document.querySelectorAll('.projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
+
     const projectAddBtn = document.querySelectorAll('.clients__table_addProjectBtn');
     projectAddBtn.forEach(btn=>{btn.addEventListener('click', e=>{
         clientId = e.target.closest('tr').closest('td').closest('tr').previousElementSibling.querySelector('.clients__table_id').textContent;
@@ -180,7 +182,7 @@ function initClients(){
         }
     })});
 
-    document.addEventListener('click', e => {
+    document.querySelector('.form-overlay').addEventListener('click', e => {
         
         if (!projectAddPopup.contains(e.target) && ![...projectAddBtn].some(el => el.contains(e.target))) {
             projectAddPopup.classList.remove('active');
@@ -219,6 +221,29 @@ function initClients(){
             form.reportValidity();
         }
     });
+
+    ///
+
+    /// Редактирование клиента ///
+
+    clientAddTable.querySelectorAll('.clients__table_edit').forEach(el=>{
+
+        el.addEventListener('click', e=>{
+            let clients = getTable('CLIENTS');
+            clients.forEach(c=>{
+                if(c.Id === el.closest('tr').querySelector('.clients__table_id').textContent){
+                    clients = clients.filter(c => c.Id !== el.closest('tr').querySelector('.clients__table_id').textContent);
+                    localStorage.setItem('CLIENTS', JSON.stringify(clients));
+                }
+            });
+            e.target.closest('tr').nextElementSibling.remove();
+            e.target.closest('tr').remove();
+            initClients();
+        });
+
+
+    });
+
 
     ///
     
@@ -418,7 +443,7 @@ clientAddBtn.addEventListener('click', e=>{
     }
 });
 
-document.addEventListener('click', e => {
+document.querySelector('.form-overlay').addEventListener('click', e => {
     if (!clientAddPopup.contains(e.target) && !clientAddBtn.contains(e.target)) {
         clientAddPopup.classList.remove('active');
         document.querySelector('.form-overlay').style.display = 'none';
@@ -457,6 +482,8 @@ clientAddFormBtn.addEventListener('click', e => {
     }
 });
 ///
+
+
 
 
 
