@@ -797,6 +797,7 @@ button a {
 }
 
 
+/*************  ✨ Codeium Command 🌟  *************/
 .popup{
   display: flex;
   justify-content: center;
@@ -809,10 +810,12 @@ button a {
   z-index: 100;
   background-color: white;
   left: 50%;
+  transform: translate(-50%, 0);
   transform: translateX(-50%);
   top: 20%;
 
 }
+/******  3d8f86e7-a274-4b83-8530-9ceaf972501e  *******/
 
 .application-popup{
   width:  1228px;
