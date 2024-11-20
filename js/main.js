@@ -97,6 +97,7 @@ applicationBtn.addEventListener('click', e => {
     const form = applicationBtn.closest('form');
     form.querySelectorAll('.application-form__label_error').forEach(e=> e.style.opacity = 0);
     if (form.checkValidity()) {
+        console.log('c c');
         if(!validate('application',{'type':'name','element':form.name},{'type':'phone','element':form.phone}).length > 0){
             applicationBtn.setAttribute('disabled', 'disabled');
             createApplication();
@@ -110,6 +111,8 @@ applicationBtn.addEventListener('click', e => {
     
             }, 2000)
         }
+
+        else{}
 
 
     } else {
