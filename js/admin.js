@@ -161,19 +161,28 @@ function initClients(){
     clientProjectsBtn.forEach(el=>{
 
         el.addEventListener('click', e=>{
-            document.querySelectorAll('.clients__table_projects').forEach(elem=>{
-                elem.style.display = 'none';
-            });
+            if(e.target.closest('tr').nextElementSibling.style.display === 'flex'){
 
-            clientProjectsBtn.forEach(m => {
-                m.style.transform = '';
-            })
+                e.target.closest('tr').nextElementSibling.style.display = 'none';
+                e.target.style.transform = '';
+            }
+            else{
 
-            e.target.style = `
-                transform: rotate(180deg);
-            `;
-            
-            e.target.closest('tr').nextElementSibling.style.display = 'flex';
+                document.querySelectorAll('.clients__table_projects').forEach(elem=>{
+                    elem.style.display = 'none';
+                });
+    
+                clientProjectsBtn.forEach(m => {
+                    m.style.transform = '';
+                })
+    
+                e.target.style = `
+                    transform: rotate(180deg);
+                `;
+                
+                e.target.closest('tr').nextElementSibling.style.display = 'flex';
+
+            }
         })
     
     });
@@ -456,20 +465,35 @@ function initApplications(){
     applicationsTable.querySelectorAll('.applications__table_MsgBtn').forEach(el=>{
 
         el.addEventListener('click', e=>{
-            applicationsTable.querySelectorAll('.applications__table_message').forEach(elem=>{
-                elem.style.display = 'none';
+
+            console.log(e.target.closest('tr').nextElementSibling.style.display);
+        
+            if(e.target.closest('tr').nextElementSibling.style.display === 'flex'){
+
+                e.target.closest('tr').nextElementSibling.style.display = 'none';
+                e.target.style.transform = '';
+            }
+
+            else{
+
+                applicationsTable.querySelectorAll('.applications__table_message').forEach(elem=>{
+                    elem.style.display = 'none';
+                    
+                });
+    
+                applicationsTable.querySelectorAll('.applications__table_MsgBtn').forEach(m => {
+                    m.style.transform = '';
+                })
+    
+                e.target.style = `
+                    transform: rotate(180deg);
+                `;
                 
-            });
+                e.target.closest('tr').nextElementSibling.style.display = 'flex';
 
-            applicationsTable.querySelectorAll('.applications__table_MsgBtn').forEach(m => {
-                m.style.transform = '';
-            })
 
-            e.target.style = `
-                transform: rotate(180deg);
-            `;
+            }
             
-            e.target.closest('tr').nextElementSibling.style.display = 'flex';
         })
 
 
