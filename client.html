@@ -17,9 +17,65 @@
 </head>
 <body>
     <header>
-        <h1 class="clientCompanyTitle title">КОМПАНИЯ КЛИЕНТА</h1>
-        <a href="./index.html"><button class="logOutBtn btn">ВЫХОД</button></a>
+        <button class="settingsBtn btn button"><img src="icons/settings.svg" alt="настройки"></button>
+        <h1 class="clientCompanyTitle title">ПРОЕКТЫ</h1>
+
+        <a href="./index.html"><img src="icons/logout.svg" class="logOutBtn btn settingsBtn " alt="выход"></a>
        
     </header>
+
+    <main>
+        <section class="settings">
+
+        </section>
+
+
+        <section class="projects">
+
+            <nav class="menu">
+                <ul class="projectLinks">
+                    <li class="projectLink">Проект 1</li>
+                    <li class="projectLink">Проект 2</li>
+                    <li class="projectLink">Проект 3</li>
+                </ul>
+            </nav>
+
+            <div class="project">
+
+                <div class="projectInfo">
+
+                    <div class="projectInfo__company">
+                        <h2>Организация:</h2>
+                        <h2 class="companyName">Название компании</h2> 
+                    </div>
+        
+                    <div class="projectInfo__description">
+                        <h2>Описание:</h2>
+                        <p class="projectDescription">Описание проекта</p> 
+                    </div>
+        
+                    <div class="projectInfo__status">
+                        <h2>Текущий статус:</h2>
+                        <p class="projectStatus">Текущий статус</p> 
+                    </div>
+        
+                </в>
+        
+                <div class="projectStatusHistory">
+                    <table class="projectStatusHistory__table">
+                        <tr>
+                            <th>Статус</th>
+                            <th><p>Комментарий</p></th>
+                            <th rowspan="2">Действия</th>
+                        </tr>
+                    </table>
+        
+                </div>
+
+            </div>
+        
+
+        </section>
+    </main>
 </body>
 </html>

@@ -106,6 +106,16 @@ function validate(formType, ...fields){
 
                 switch(field.type){
 
+                    case 'ProjectName':
+                        const projectName = field.element.value;
+                        const existProject = getTable('PROJECTS').find(project => project.ProjectName === projectName);
+                        if (existProject) {
+                            field.element.nextElementSibling.style.opacity = 1;
+                            field.element.nextElementSibling.textContent = 'Проект с таким названием существует';
+                            errors.push({type:'projectName'});
+                            break;
+                        }
+
                 };
 
                 break;

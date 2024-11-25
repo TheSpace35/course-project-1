@@ -1036,3 +1036,64 @@ input[type='checkbox']:checked{
 }
 
 
+.projects {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 60px;
+  
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  
+  background-color: #F8D57E;
+  margin-top: 15px;
+  margin-left: 15px;
+  border-radius: 5px;
+  width: 20%;
+  text-align: center;
+ 
+}
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+ 
+}
+.menu li {
+  margin-bottom: 15px;
+  justify-content: center;
+}
+.menu-link {
+  text-decoration: none;
+  color: black;
+}
+.menu-link:hover {
+  background-color: #ffc107;
+}
+
+.project{
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+
+}
+
+.projectInfo{
+  width: 100%;
+}
+
+.logOutBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+
+}
+
+

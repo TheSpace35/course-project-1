@@ -83,7 +83,7 @@ function Login(){
                 else{
                     localStorage.setItem('session', JSON.stringify({'role':"client"})); 
                 }
-                location.href = "./client.html";
+                location.href = `./client.html?ClientID=${client.Id}`;
                 msg.classList.remove('login-form__message_notice');
                 msg.style.opacity = 0;
                 return isAuth;

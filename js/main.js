@@ -102,7 +102,7 @@ applicationBtn.addEventListener('click', e => {
         if(!validCheck.length > 0){
             applicationBtn.setAttribute('disabled', 'disabled');
             createApplication();
-            console.log('заявка отправлена');
+  
             document.querySelector('.application-form__message').style.opacity = 1;
     
             setTimeout(()=>{
