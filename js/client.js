@@ -18,6 +18,41 @@ document.querySelector('.logOutBtn').addEventListener('click', ()=>{
     location.href = '/index.html';
 });
 
+const settingsBtn = document.querySelector('.settingsBtn');
+
+const clientSettings = document.querySelector('.clientSettings');
+
+const projects = document.querySelector('.projects');
+
+let clientMode = 'projects';
+
+
+settingsBtn.addEventListener('click', e=>{
+
+
+    if(clientMode !== 'settings'){
+
+        cProjectName = document.querySelector('.clientCompanyTitle').textContent;
+        
+        document.querySelector('.clientCompanyTitle').textContent = 'НАСТРОЙКИ';
+        projects.style.display = 'none';
+        clientSettings.style.display = 'flex';
+    
+        clientMode = 'settings';
+
+    }
+
+    else{
+        document.querySelector('.clientCompanyTitle').textContent = cProjectName;
+        clientSettings.style.display = 'none';
+        projects.style.display = 'flex';
+    
+        clientMode = 'projects';
+
+    }
+
+})
+
 
 
 

@@ -2,6 +2,10 @@ InitLocalStorage();
 
 let mode = 'clients';
 
+const settingsBtn = document.querySelector('.settingsBtn');
+
+const adminSettings = document.querySelector('.adminSettings');
+
 const logOutBtn = document.querySelector('.logOutBtn');
 const applications = document.querySelector('.applications');
 const clients = document.querySelector('.clients');
@@ -42,6 +46,8 @@ else if(JSON.parse(localStorage.getItem('session')).role !== 'admin'){
 
 
 
+
+
 changeMode.addEventListener('click', e=>{
 
     if(mode === 'clients'){
@@ -53,7 +59,7 @@ changeMode.addEventListener('click', e=>{
 
         mode = 'applications';
     }
-    else{
+    else if(mode === 'applications'){
         e.target.textContent = 'ЗАЯВКИ';
         document.querySelector('.adminTitle').textContent = 'КЛИЕНТЫ';
         clients.style.display = 'flex';
@@ -62,9 +68,37 @@ changeMode.addEventListener('click', e=>{
 
         mode = 'clients';
     }
-
+    
     
 });
+
+let oldMode = '';
+
+settingsBtn.addEventListener('click', e=>{
+
+
+    if(mode !== 'settings'){
+        oldMode = mode;
+        changeMode.style.display = 'none';
+        document.querySelector('.adminTitle').textContent = 'НАСТРОЙКИ';
+        adminSettings.style.display = 'flex';
+        mode === 'clients' ? clients.style.display = 'none' : applications.style.display = 'none';
+    
+        mode = 'settings';
+
+    }
+
+    else{
+        changeMode.style.display = 'flex';
+        document.querySelector('.adminTitle').textContent = oldMode === 'clients' ? 'КЛИЕНТЫ' : 'ЗАЯВКИ';
+        adminSettings.style.display = 'none';
+        oldMode === 'clients' ? (clients.style.display = 'flex', initClients()) : (applications.style.display = 'flex', initApplications());
+    
+        mode = oldMode;
+
+    }
+
+})
 
 
 
@@ -239,7 +273,7 @@ function initClients(){
                     initClients();
                     form.reset();
         
-                }, 2000)
+                }, 1000)
             }
     
     
@@ -558,6 +592,7 @@ function initApplications(){
 
 logOutBtn.addEventListener('click', ()=>{
     localStorage.removeItem('session');
+    location.href = '/index.html';
 });
 
 
@@ -613,7 +648,7 @@ clientAddFormBtn.addEventListener('click', e => {
                 document.querySelector('.form-overlay').style.display = 'none';
                 form.reset();
     
-            }, 2000)
+            }, 1000)
             initClients();
 
 
