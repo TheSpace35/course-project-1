@@ -12,9 +12,9 @@
 
     <!-- js -->
     <script defer src="js/DataBase.js"></script>
+    <script defer src="js/register.js"></script>
     <script defer src="js/validation.js"></script>
     <script defer src="js/project.js"></script>
-    <script defer src="js/register.js"></script>
     <script defer src="js/admin.js"></script>
 
 
@@ -50,29 +50,7 @@
                 </tr>
 
 
-                <tr>
-                    <td>001</td>
-                    <td>Михаил</td>
-                    <td>+79661234312</td>
-                    <td>Не обработано</td>
-                    <td><img class="applications__table_CompleteBtn" src="icons/complete.svg" alt="иконка заверения"></td>
-                    <td><img class="applications__table_MsgBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
-
-                    <tr class="applications__table_message">
-
-                        <td colspan="6">
-                            <table>
-                                
-                                <tr class="applications__table_message_text"><td rowspan="6">Дополнительного сообщеня нет</td></tr>
-                
-                            </table>
-                
-                        </td>
-
-                    </tr>
-
-
-                <!-- <tr class="applications__table_placeholder" aria-colspan="6">Заявлений нет</tr> -->
+ 
             </table>
 
         </section>
@@ -87,7 +65,7 @@
                 <form method="post" class="clientAdd-form">
                     <label for="company" class="clientAdd-form__label">Название компании:</label>
                     <input type="text" name="company" class="clientAdd-form__input" required>
-                    <label for="company" class="clientAdd-form__label_error">Ошибка</label>
+                    <label for="company" class="clientAdd-form__label_error error">Ошибка</label>
         
                     <label for="phone" class="clientAdd-form__label">Номер телефона</label>
                     <input type="text" name="phone" class="clientAdd-form__input" required>
@@ -101,9 +79,56 @@
                     <input type="text" name="login" class="clientAdd-form__input" required>
                     <label for="login" class="clientAdd-form__label_error">Ошибка</label>
         
-                    <button class="clientAdd-form__button">Добавить</button>
+                    <button class="clientAdd-form__button btn-main">Добавить</button>
         
                     <p class="clientAdd-form__message">Клиент добавлен, пароль отправлен на Email! (Можно просмотреть в консоли)</p>
+                </form>
+            </div>
+
+
+            <div class="clientEdit-popup popup">
+                <h2>Редактирование клиента</h2>
+                <form method="post" class="clientEdit-form" name="clientEdit">
+                    <label for="Company" class="clientEdit-form__label">Название компании:</label>
+                    <input type="text" name="Company" class="clientEdit-form__input input" required>
+                    <label for="Company" class="clientEdit-form__label_error error">Ошибка</label>
+        
+                    <label for="Phone" class="clientEdit-form__label">Номер телефона</label>
+                    <input type="text" name="Phone" class="clientEdit-form__input input" required>
+                    <label for="Phone" class="clientEdit-form__label_error error">Ошибка</label>
+
+                    <label for="Email" class="clientEdit-form__label">Email</label>
+                    <input type="text" name="Email" class="clientEdit-form__input input" required>
+                    <label for="Email" class="clientEdit-form__label_error error">Ошибка</label>
+
+                    <label for="Login" class="clientEdit-form__label">Логин</label>
+                    <input type="text" name="Login" class="clientEdit-form__input input" required>
+                    <label for="Login" class="clientEdit-form__label_error error">Ошибка</label>
+
+                    <label for="passReset" class="clientEdit-form__label">Сбросить пароль</label>
+                    <input type="checkbox" name="passReset" class="clientEdit-form__input input">
+        
+                    <button class="clientEdit-form__button btn-main">Сохранить</button>
+        
+                    <p class="clientEdit-form__message message">Клиент изменен!</p>
+                </form>
+            </div>
+
+
+            <div class="projectEdit-popup popup">
+                <h2>Редактирование проекта</h2>
+                <form method="post" class="projectEdit-form" name="projectEdit">
+                    <label for="ProjectName" class="projectEdit-form__label">Название проекта:</label>
+                    <input type="text" name="ProjectName" class="projectEdit-form__input input" required>
+                    <label for="ProjectName" class="projectEdit-form__label_error error">Ошибка</label>
+
+                    <label for="ProjectDescription" class="projectEdit-form__label">Описание проекта:</label>
+                    <textarea name="ProjectDescription" class="projectEdit-form__input input" required></textarea>
+                    <label for="ProjectDescription" class="projectEdit-form__label_error error">Ошибка</label>
+
+                    <button class="projectEdit-form__button btn-main">Сохранить</button>
+        
+                    <p class="projectEdit-form__message message">Проект изменен!</p>
                 </form>
             </div>
 
@@ -113,14 +138,14 @@
                 <form method="post" class="projectAdd-form">
                     <label for="name" class="projectAdd-form__label">Название проекта:</label>
                     <input type="text" name="name" class="projectAdd-form__input" required>
-                    <label for="name" class="projectAdd-form__label_error">Ошибка</label>
+                    <label for="name" class="projectAdd-form__label_error error">Ошибка</label>
 
                     <label for="description" class="projectAdd-form__label">Описание проекта:</label>
                     <textarea class="projectAdd-form__input area" name="description" cols="30" rows="10" maxlength="255"></textarea>
              
-                    <button class="projectAdd-form__button">Добавить</button>
+                    <button class="projectAdd-form__button btn-main">Добавить</button>
         
-                    <p class="projectAdd-form__message">Проект добавлен</p>
+                    <p class="projectAdd-form__message message">Проект добавлен</p>
                 </form>
             </div>
 
@@ -130,7 +155,7 @@
                     <th>id</th>
                     <th>Название компании</th>
                     <th>Номер телефона</th>
-                    <th>Уведомления</th>
+                    <th>Проекты</th>
                     <th>Изменение</th>
                     <th>Удаление</th>
                     <th>Проекты</th>

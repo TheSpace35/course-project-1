@@ -5,25 +5,31 @@ if(!localStorage.getItem('session')){
 
 else if(JSON.parse(localStorage.getItem('session')).role === 'admin'){
     if(location.pathname === '/project.html' && parseInt(location.search.split('=')[1])>0){
+        document.querySelector('.BackBtn').addEventListener('click', e => {
+            e.preventDefault();
+            location.href = '/admin.html';
+        });
         LoadInfo('admin', location.search);
     }
 
 }
 
 else if(JSON.parse(localStorage.getItem('session')).role === 'client') {
+    
 
 
     if(location.pathname === '/project.html' && parseInt(location.search.split('=')[1])>0){
+        document.querySelector('.BackBtn').addEventListener('click', e => {
+            e.preventDefault();
+            location.href = '/admin.html';
+        });
         LoadInfo('client', location.search);
     }
     
 
 }
 
-document.querySelector('.BackBtn').addEventListener('click', e => {
-    e.preventDefault();
-    location.href = '/admin.html';
-});
+
 
 
 
@@ -52,7 +58,7 @@ function AddStatus(projectId, statusName='Начат', comment='Начата р�
 
 function AddProject(clientId){
 
-    const id = Math.max(...getData('STATUSES','id'))+1;
+    const id = Math.max(...getData('PROJECTS','id'))+1;
 
     let project = {
         "id":`${id}`,
@@ -60,7 +66,20 @@ function AddProject(clientId){
         "ClientID":`${clientId}`,
         "ProjectDescription":`${projectAddForm.description.value}`,
         "StatusHistory":AddStatus(id)
-    }
+    };
+    
+    let clients = getTable('CLIENTS');
+    clients.forEach(client => {
+        if (client.Id == clientId) {
+            client.Projects = (parseInt(client.Projects) + 1).toString();
+        }
+    });
+    localStorage.setItem('CLIENTS', JSON.stringify(clients));
+
+
+  
+
+
 
     let projects = JSON.parse(localStorage.getItem('PROJECTS'));
 

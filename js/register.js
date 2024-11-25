@@ -39,11 +39,12 @@ function generatePass() {
 
 
 function CreateClient(){
-    let client = {"Id":Math.max(...getData('CLIENTS','Id'))+1,
+    let client = {
+                "Id":`${Math.max(...getData('CLIENTS','Id'))+1}`,
                 "Company":`${clientAddPopupForm.company.value}`,
                 "Login":`${clientAddPopupForm.login.value}`,
                 "Password":generatePass(),
-                "Projects":'0', //количество проектов клиента
+                "Projects": "0", //количество проектов клиента
                 "Phone":`${clientAddPopupForm.phone.value}`,
                 "Email":`${clientAddPopupForm.email.value}`,
                 "AcceptCalls":"1"

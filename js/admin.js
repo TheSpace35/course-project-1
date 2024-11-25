@@ -10,6 +10,16 @@ const clientAddBtn = clients.querySelector('.clients__add_btn');
 const clientAddPopup = clients.querySelector('.clientAdd-popup');
 const clientAddPopupForm = clients.querySelector('.clientAdd-form');
 const clientAddFormBtn = clientAddPopupForm.querySelector('.clientAdd-form__button');
+
+
+const clientEditPopup = document.querySelector('.clientEdit-popup');
+const clientEditPopupForm = clientEditPopup.querySelector('.clientEdit-form');
+const clientEditFormBtn = clientEditPopupForm.querySelector('.clientEdit-form__button');
+
+const projectEditPopup = document.querySelector('.projectEdit-popup');
+const projectEditPopupForm = projectEditPopup.querySelector('.projectEdit-form');
+const projectEditFormBtn = projectEditPopupForm.querySelector('.projectEdit-form__button');
+
 const clientAddTable = clients.querySelector('.clients__table');
 
 const projectAddPopup = clients.querySelector('.projectAdd-popup');
@@ -59,8 +69,9 @@ changeMode.addEventListener('click', e=>{
 
 
 
-
 function initClients(){
+
+    console.log();
 
     clientAddTable.innerHTML = `
     <tr>
@@ -68,7 +79,7 @@ function initClients(){
         <th>id</th>
         <th>Название компании</th>
         <th>Номер телефона</th>
-        <th>Уведомления</th>
+        <th>Проекты</th>
         <th>Изменение</th>
         <th>Удаление</th>
         <th>Проекты</th>
@@ -87,7 +98,7 @@ function initClients(){
             <td>${el.Company}</td>
             <td>${el.Phone}</td>
             <td>${el.Projects}</td>
-            <td><img src="icons/edit.svg" alt="иконка изменения"></td>
+            <td><img class='clients__table_edit' src="icons/edit.svg" alt="иконка изменения"></td>
             <td><img class='clients__table_remove' src="icons/remove.svg" alt="иконка удаления"></td>
             <td><img class="clients__table_projectsBtn" src="icons/arrow-down.svg" alt="иконка раскрытия"></td>
         
@@ -105,20 +116,20 @@ function initClients(){
                     <th>Уведомления</th>
                     <th>Редактирование</th>
                 </tr>
-                ${JSON.parse(localStorage.getItem('PROJECTS')).filter(project => project.ClientID === el.Id).map(project => {
-                    const statusAndNotice = (JSON.parse(localStorage.getItem('STATUSES')).find(s => s.ProjectID === project.id) || {});
+                ${getTable('PROJECTS').filter(project => project.ClientID === el.Id).map(project => {
+                    const statusAndNotice = (getTable('STATUSES').find(s => s.ProjectID === project.id) || {});
                  
                     return `
                     <tr class="clients__table_projects_project">
                         <td class='clients__table_projects_project_id'>${project.id}</td>
-                        <td>${project.ProjectName}</td>
+                        <td class="clients__table_projects_project_name">${project.ProjectName}</td>
                         <td>${statusAndNotice.StatusName}</td>
                         <td>${statusAndNotice.ClientAccept}</td>
-                        <td><img src="icons/edit.svg" alt="иконка изменения"></td>
+                        <td><img src="icons/edit.svg" class="clients__table_projects_project_edit" alt="иконка изменения"></td>
                         
                 </tr>`
-                }).join('')};
-                ${JSON.parse(localStorage.getItem('PROJECTS')).filter(project => project.ClientID === el.Id).length === 0 ? `<tr class="clients__table_placeholder"><td rowspan="7">Проектов нет</td></tr>` : ``}
+                }).join('')}
+                ${getTable('PROJECTS').filter(project => project.ClientID === el.Id).length === 0 ? `<tr class="clients__table_placeholder"><td rowspan="7">Проектов нет</td></tr>` : ``}
 
                 <tr>
                     <td><button class='clients__table_addProjectBtn btn button'>Добавить проект</button></td>
@@ -132,9 +143,15 @@ function initClients(){
 
         clientAddTable.append(row, projectsRow);
 
-        projectsRow.querySelectorAll('.clients__table_projects_project').forEach(el=>{
+        projectsRow.querySelectorAll('.clients__table_projects_project_id').forEach(el=>{
             el.addEventListener('click',()=>{
-                window.location.href = `./project.html?projectId=${el.querySelector('.clients__table_projects_project_id').textContent}`;
+                window.location.href = `./project.html?projectId=${el.closest('tr').querySelector('.clients__table_projects_project_id').textContent}`;
+            });
+        });
+
+        projectsRow.querySelectorAll('.clients__table_projects_project_name').forEach(el=>{
+            el.addEventListener('click',()=>{
+                window.location.href = `./project.html?projectId=${el.closest('tr').querySelector('.clients__table_projects_project_id').textContent}`;
             });
         });
     });
@@ -225,23 +242,63 @@ function initClients(){
     ///
 
     /// Редактирование клиента ///
+    clientAddTable.querySelectorAll('.clients__table_edit').forEach(el => {
 
-    clientAddTable.querySelectorAll('.clients__table_edit').forEach(el=>{
+        el.addEventListener('click', e => {
 
-        el.addEventListener('click', e=>{
             let clients = getTable('CLIENTS');
-            clients.forEach(c=>{
-                if(c.Id === el.closest('tr').querySelector('.clients__table_id').textContent){
-                    clients = clients.filter(c => c.Id !== el.closest('tr').querySelector('.clients__table_id').textContent);
-                    localStorage.setItem('CLIENTS', JSON.stringify(clients));
+            const currentClient = clients.find(c => c.Id === el.closest('tr').querySelector('.clients__table_id').textContent);
+            if (currentClient) {
+                clientEditFormBtn.removeAttribute('disabled');
+
+                document.querySelector('.clientEdit-form__message').style.opacity = 0;
+
+                clientEditPopup.querySelector('.clientEdit-form').Company.value = currentClient.Company;
+                clientEditPopup.querySelector('.clientEdit-form').Phone.value = currentClient.Phone;
+                clientEditPopup.querySelector('.clientEdit-form').Login.value = currentClient.Login;
+                clientEditPopup.querySelector('.clientEdit-form').Email.value = currentClient.Email;
+
+                if (!(clientEditPopup.classList.contains('active'))) {
+                    document.querySelector('.form-overlay').style.display = 'block';
+                    clientEditPopup.classList.add('active');
+
                 }
-            });
-            e.target.closest('tr').nextElementSibling.remove();
-            e.target.closest('tr').remove();
-            initClients();
+
+                document.querySelector('.form-overlay').addEventListener('click', e => {
+                    if (!clientEditPopup.contains(e.target)) {
+                        clientEditPopup.classList.remove('active');
+                        document.querySelector('.form-overlay').style.display = 'none';
+
+                    }
+                });
+
+                clientEditFormBtn.addEventListener('click', e => {
+                    e.preventDefault();
+
+                    const form = clientEditFormBtn.closest('form');
+                    form.querySelectorAll('.clientEdit-form__label_error').forEach(e => e.style.opacity = 0);
+                    if (form.checkValidity()) {
+
+                        if (!validate("editClient", { "type": "company", "element": form.company }, { "type": "phone", "element": form.phone }, { "type": "email", "element": form.email }, { "type": "login", "element": form.login }).length > 0) {
+
+                            clientEditFormBtn.setAttribute('disabled', 'disabled');
+                            UpdateFromForm('CLIENTS',currentClient.Id, form);
+                            document.querySelector('.clientEdit-form__message').style.opacity = 1;
+
+                            setTimeout(() => {
+                                clientEditPopup.classList.remove('active');
+                                document.querySelector('.form-overlay').style.display = 'none';
+                                form.reset();
+                            }, 1000);
+                            initClients();
+
+                        }
+                    } else {
+                        form.reportValidity();
+                    }
+                });
+            }
         });
-
-
     });
 
 
@@ -278,7 +335,67 @@ function initClients(){
     });
 
     ///
-    
+
+
+
+    /// Редактирование проекта ///
+    clientAddTable.querySelectorAll('.clients__table_projects_project_edit').forEach(el => {
+
+        el.addEventListener('click', e => {
+
+            let projects = getTable('PROJECTS');
+            const currentProject = projects.find(p => p.id === el.closest('tr').querySelector('.clients__table_projects_project_id').textContent);
+            if (currentProject) {
+                projectEditFormBtn.removeAttribute('disabled');
+
+                document.querySelector('.projectEdit-form__message').style.opacity = 0;
+
+                projectEditPopup.querySelector('.projectEdit-form').ProjectName.value = currentProject.ProjectName;
+                projectEditPopup.querySelector('.projectEdit-form').ProjectDescription.value = currentProject.ProjectDescription;
+
+                if (!(projectEditPopup.classList.contains('active'))) {
+                    document.querySelector('.form-overlay').style.display = 'block';
+                    projectEditPopup.classList.add('active');
+                }
+
+                document.querySelector('.form-overlay').addEventListener('click', e => {
+                    if (!projectEditPopup.contains(e.target)) {
+                        projectEditPopup.classList.remove('active');
+                        document.querySelector('.form-overlay').style.display = 'none';
+                    }
+                });
+
+                projectEditFormBtn.addEventListener('click', e => {
+                    e.preventDefault();
+
+                    const form = projectEditFormBtn.closest('form');
+                    form.querySelectorAll('.projectEdit-form__label_error').forEach(e => e.style.opacity = 0);
+                    if (form.checkValidity()) {
+
+                        if (!validate("editProject", { "type": "name", "element": form.name }, { "type": "description", "element": form.description }).length > 0) {
+
+                            projectEditFormBtn.setAttribute('disabled', 'disabled');
+                            UpdateFromForm('PROJECTS', currentProject.id, form);
+                            document.querySelector('.projectEdit-form__message').style.opacity = 1;
+
+                            setTimeout(() => {
+                                projectEditPopup.classList.remove('active');
+                                document.querySelector('.form-overlay').style.display = 'none';
+                                form.reset();
+                            }, 1000);
+                            initClients();
+
+                        }
+                    } else {
+                        form.reportValidity();
+                    }
+                });
+            }
+        });
+    });
+
+
+    ///
 };
 
 

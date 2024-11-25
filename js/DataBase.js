@@ -78,6 +78,58 @@ function getTable(tableName){
 /// 
 
 
+/// Перезапись таблицы из localStorage
+function updateTable(tableName, newData){
+    localStorage.setItem(tableName, JSON.stringify(newData));
+};
+
+/// 
+
+/// Обновление таблицы
+
+function UpdateFromForm(tableName, id, form){
+
+    const table = getTable(tableName);
+
+    console.log(table);
+
+
+
+    let updateElementIndex = 0;
+    if(form.name === 'projectEdit'){
+        updateElementIndex = table.findIndex(element => element.id === id);
+        console.log(updateElementIndex);
+
+    }
+
+    else{
+        updateElementIndex = table.findIndex(element => element.Id === id);
+    }
+
+    const formData = new FormData(form);
+
+    for (const [key, value] of formData.entries()) {
+        if(key === 'passReset' && form.name === 'clientEdit'){
+            if (value === 'on') {
+                table[updateElementIndex]['Password'] = generatePass();
+            }
+        }
+        else{
+            table[updateElementIndex][key] = value;
+            console.log(table[updateElementIndex][key]);
+            console.log(key);
+        }
+    }
+
+    console.log(table);
+
+    updateTable(tableName, table);
+
+}
+
+///
+
+
 
 
 
