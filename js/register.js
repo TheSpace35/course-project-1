@@ -32,6 +32,7 @@ function generatePass() {
         passSymbols.push(rand);
       }
     }
+    console.log(passSymbols.join(''));
   
     return passSymbols.join('');
   }
@@ -40,7 +41,7 @@ function generatePass() {
 
 function CreateClient(){
     let client = {
-                "Id":`${Math.max(...getData('CLIENTS','Id'))+1}`,
+                "Id":`${getTable('CLIENTS').length === 0 ? 1 : Math.max(...getData('CLIENTS','Id'))+1}`,
                 "Company":`${clientAddPopupForm.company.value}`,
                 "Login":`${clientAddPopupForm.login.value}`,
                 "Password":generatePass(),
@@ -52,10 +53,12 @@ function CreateClient(){
   
     let clients = JSON.parse(localStorage.getItem('CLIENTS'));
     clients.push(client);
+    console.log(client);
     localStorage.setItem('CLIENTS',JSON.stringify(clients));
-
-}
 
     /// ВРЕМЕННО
     console.log(`Логин: ${client.Login} Пароль: ${client.Password}`);
+
+}
+
 

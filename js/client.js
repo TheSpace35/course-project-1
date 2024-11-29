@@ -101,7 +101,7 @@ function displayClientProjects(clientId) {
         });
     });
 
-    LoadProject(clientProjects[0].id);
+    LoadProject(clientProjects[clientProjects.length-1].id);
 }
 
 
@@ -123,7 +123,8 @@ function LoadProject(projectId){
     statusHistory.forEach(el=>{
         let status = document.createElement('tr');
         if(statusHistory.indexOf(el) === 0){
-            console.log(el.id);
+
+
 
             status.innerHTML = `
             <td>${el.StatusName}</td>
@@ -145,6 +146,7 @@ function LoadProject(projectId){
             /// принятие завешения этапа ///
 
             status.querySelector('.projectStatusHistory__table__status_acceptBtn').addEventListener('click', elem =>{
+                console.log(status);
                 status.querySelector('.projectStatusHistory__table__status_acceptBtn_td').style.display = 'none';
                 status.querySelector('.projectStatusHistory__table__status_denyBtn_td').style.display = 'none';
                 status.querySelector('.projectStatusHistory__table__status_restoreBtn_td').style.display = 'flex';
@@ -205,7 +207,6 @@ function LoadProject(projectId){
 }
 
 displayClientProjects(clientId);
-
 
 
 

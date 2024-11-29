@@ -266,6 +266,7 @@ function initClients(){
                 
                 document.querySelector('.projectAdd-form__message').style.opacity = 1;
                 AddProject(clientId);
+                console.log(getTable('PROJECTS'));
         
                 setTimeout(()=>{
                     projectAddPopup.classList.remove('active');
@@ -356,21 +357,24 @@ function initClients(){
         el.addEventListener('click', e=>{
             let projects = getTable('PROJECTS');
             let clients = getTable('CLIENTS');
-            projects.forEach(p=>{
-                if(p.ClientID === el.closest('tr').querySelector('.clients__table_id').textContent){
-                    projects = projects.filter(p => p.id !== el.closest('tr').querySelector('.clients__table_id').textContent);
-                    localStorage.setItem('PROJECTS', JSON.stringify(projects));
-                }
-            });
+            let statuses = getTable('STATUSES');
 
-            clients.forEach(c=>{
-                if(c.Id === el.closest('tr').querySelector('.clients__table_id').textContent){
-                    clients = clients.filter(c => c.Id !== el.closest('tr').querySelector('.clients__table_id').textContent);
-                    localStorage.setItem('CLIENTS', JSON.stringify(clients));
-                }
-            })
+            console.log(projects);
+            const clientIdToRemove = el.closest('tr').querySelector('.clients__table_id').textContent;
+            const projectIdsToRemove = projects.filter(p => p.ClientID === clientIdToRemove).map(p => p.id);
+            projects = projects.filter(p => p.ClientID !== clientIdToRemove);
+            localStorage.setItem('PROJECTS', JSON.stringify(projects));
+
+            clients = clients.filter(c => c.Id !== clientIdToRemove);
+            localStorage.setItem('CLIENTS', JSON.stringify(clients));
+
+            statuses = statuses.filter(s => !projectIdsToRemove.includes(s.ProjectID));
+            localStorage.setItem('STATUSES', JSON.stringify(statuses));
+
             e.target.closest('tr').nextElementSibling.remove();
             e.target.closest('tr').remove();
+
+            
             
         });
 
@@ -459,7 +463,7 @@ function initApplications(){
     
     `
 
-    const applications = JSON.parse(localStorage.getItem('APPLICATIONS'));
+    const applications = JSON.parse(localStorage.getItem('APPLICATIONS')) || [];
 
     applications.forEach(el=>{
         let row = document.createElement('tr');

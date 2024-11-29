@@ -9,29 +9,10 @@ else if(JSON.parse(localStorage.getItem('session')).role === 'admin'){
             e.preventDefault();
             location.href = '/admin.html';
         });
-        LoadInfo('admin', location.search);
+        LoadInfo(location.search);
     }
 
 }
-
-else if(JSON.parse(localStorage.getItem('session')).role === 'client') {
-    
-
-
-    if(location.pathname === '/project.html' && parseInt(location.search.split('=')[1])>0){
-        document.querySelector('.BackBtn').addEventListener('click', e => {
-            e.preventDefault();
-            location.href = '/admin.html';
-        });
-        LoadInfo('client', location.search);
-    }
-    
-
-}
-
-
-
-
 
 
 
@@ -41,7 +22,7 @@ function AddStatus(projectId, statusName='Начат', comment='Начата р�
     let statuses = JSON.parse(localStorage.getItem('STATUSES'));
 
     let status = {
-        "id":`${Math.max(...getData('STATUSES','id'))+1}`,
+        "id":`${getTable('STATUSES').length === 0 ? 0 : Math.max(...getData('STATUSES','id'))+1}`,
         "StatusName":`${statusName}`,
         "Comment":`${comment}`,
         "ClientAccept":"0",
@@ -58,7 +39,11 @@ function AddStatus(projectId, statusName='Начат', comment='Начата р�
 
 function AddProject(clientId){
 
-    const id = Math.max(...getData('PROJECTS','id'))+1;
+    console.log();
+
+    const id = getTable('PROJECTS').length === 0 ? 1 : (Math.max(...getData('PROJECTS','id'))+1);
+
+    console.log(id);
 
     let project = {
         "id":`${id}`,
@@ -67,25 +52,23 @@ function AddProject(clientId){
         "ProjectDescription":`${projectAddForm.description.value}`,
         "StatusHistory":AddStatus(id)
     };
+
     
     let clients = getTable('CLIENTS');
     clients.forEach(client => {
         if (client.Id == clientId) {
+            console.log(project);
             client.Projects = (parseInt(client.Projects) + 1).toString();
         }
     });
     localStorage.setItem('CLIENTS', JSON.stringify(clients));
 
-
-  
-
-
-
-    let projects = JSON.parse(localStorage.getItem('PROJECTS'));
+    let projects = getTable("PROJECTS");
 
     projects.push(project);
 
     localStorage.setItem('PROJECTS',JSON.stringify(projects));
+    console.log(getTable('PROJECTS'));
 }
 
 
@@ -93,7 +76,7 @@ function AddProject(clientId){
 ///
 
 
-function LoadInfo(role, projectId){
+function LoadInfo(projectId){
     projectId = projectId.split('=')[1];
     let project = JSON.parse(localStorage.getItem('PROJECTS'));
     project = project.find(el => el.id == projectId);
@@ -101,10 +84,7 @@ function LoadInfo(role, projectId){
 
     const statusHistory = JSON.parse(localStorage.getItem('STATUSES')).filter(el => el.ProjectID == projectId);
 
-   
- 
 
-    console.log(project);
     document.querySelector('.projectTitle').textContent = `${project.ProjectName}`;
     document.querySelector('.companyName').textContent = `${JSON.parse(localStorage.getItem('CLIENTS')).find(el => el.Id == project.ClientID).Company}`;
     document.querySelector('.projectDescription').textContent = `${project.ProjectDescription}`;
@@ -113,22 +93,25 @@ function LoadInfo(role, projectId){
     statusHistory.forEach(el=>{
         let status = document.createElement('tr');
         if(statusHistory.indexOf(el) === 0){
+            console.log(el.ClientAccept);
             status.innerHTML = `
             <td>${el.StatusName}</td>
             <td>${el.Comment}</td>
-            <td><img src="/icons/complete.svg" alt="подтвердить"></td>
-            <td><img src="/icons/cancel.svg" alt="отклонить"></td>
+            <td rowspan="2">${el.ClientAccept === 0 ? 'Не оценено' : el.ClientAccept === 1 ? 'Отклонено' : 'Подтверждено'}</td>
             `;
         }
         else{
-
             status.innerHTML = `
             <td>${el.StatusName}</td>
             <td>${el.Comment}</td>
+            <td>Закрыт</td>
             `;
 
         }
         document.querySelector('.projectStatusHistory__table').appendChild(status);
         });
 
-}
+};
+
+
+
