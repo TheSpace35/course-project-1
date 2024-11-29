@@ -1101,3 +1101,7 @@ input[type='checkbox']:checked{
 }
 
 
+.projectStatusHistory__table__status_restoreBtn_td{
+  display: none;
+}
+

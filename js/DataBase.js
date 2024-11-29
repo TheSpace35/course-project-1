@@ -57,11 +57,8 @@ function getData(tableName, field){
     let data = [];
     const table = JSON.parse(localStorage.getItem(tableName));
     table.forEach(element => {
-        console.log(typeof parseInt(element[field]));
         data.push(parseInt(element[field]));
     });
-
-    console.log(data);
 
     return data;
 };
@@ -85,23 +82,16 @@ function updateTable(tableName, newData){
 
 /// 
 
-/// Обновление таблицы
+/// Обновление таблицы из формы
 
 function UpdateFromForm(tableName, id, form){
 
     const table = getTable(tableName);
 
-    console.log(table);
-
-
-
     let updateElementIndex = 0;
     if(form.name === 'projectEdit'){
         updateElementIndex = table.findIndex(element => element.id === id);
-        console.log(updateElementIndex);
-
     }
-
     else{
         updateElementIndex = table.findIndex(element => element.Id === id);
     }
@@ -116,18 +106,38 @@ function UpdateFromForm(tableName, id, form){
         }
         else{
             table[updateElementIndex][key] = value;
-            console.log(table[updateElementIndex][key]);
-            console.log(key);
         }
     }
-
-    console.log(table);
 
     updateTable(tableName, table);
 
 }
 
 ///
+
+
+/// Обновление значения таблицы
+
+function UpdateFromValue(tableName, id, key, value){
+
+    const table = getTable(tableName);
+
+    let updateElementIndex = 0;
+    if(tableName === 'PROJECTS'){
+        updateElementIndex = table.findIndex(element => element.id === id);
+    }
+    else{
+        updateElementIndex = table.findIndex(element => element.Id === id);
+       
+    }
+    table[updateElementIndex][key] = value;
+    console.log(table[updateElementIndex]);
+    updateTable(tableName, table);
+
+}
+
+///
+
 
 
 

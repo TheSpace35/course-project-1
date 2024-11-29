@@ -53,7 +53,9 @@ function CreateClient(){
     let clients = JSON.parse(localStorage.getItem('CLIENTS'));
     clients.push(client);
     localStorage.setItem('CLIENTS',JSON.stringify(clients));
+
+}
+
     /// ВРЕМЕННО
     console.log(`Логин: ${client.Login} Пароль: ${client.Password}`);
-}
 
