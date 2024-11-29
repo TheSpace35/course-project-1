@@ -3,8 +3,8 @@
 {"type":"database","name":"ClientsInteraction"},
 {"type":"table","name":"Admins","database":"ClientsInteraction","data":
 [
-{"id":"1","Login":"admin1","Password":"pass123"},
-{"id":"2","Login":"admin2","Password":"pAsS321"}
+{"id":"1","Login":"admin1","Password":"pass123", "Email":"admin1@gmail.com", "Phone":"+79163452312"},
+{"id":"2","Login":"admin2","Password":"pAsS321", "Email":"admin2@gmail.com", "Phone":"+79163452345"}
 ]
 }
 ,{"type":"table","name":"Applications","database":"ClientsInteraction","data":
