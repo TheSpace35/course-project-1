@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="icons/site.webmanifest">
+    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- js -->
+    <script defer src="js/ClientsInteraction.json"></script>
+    <script defer src="js/DataBase.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/auth.js"></script>
+
+
+</head>
+<body>
+
+<div class="form-overlay"></div>
+<!-- Окно авторизации -->
+    <div class="login-popup popup">
+        <h2>Вход</h2>
+        <form method="post" class="login-form">
+            <label for="login" class="login-form__label">Логин:</label>
+            <input type="text" name="login" class="login-form__input" placeholder="Введите здесь пароль" required>
+
+            <label for="password" class="login-form__label">Пароль:</label>
+            <input type="password" name="password" class="login-form__input" placeholder="Введите здесь пароль" required>
+
+            <label for="remember" class="login-form__label">Запомнить</label>
+            <input type="checkbox" name="remember" class="login-form__input">
+
+            <button type="submit" class="login-form__button">Войти</button>
+
+            <p class="login-form__message">Данные не верны!</p>
+        </form>
+    </div>
+
+<!-- Окно заявки на обратную связь -->
+    <div class="application-popup popup">
+        <h2>Заказать звонок</h2>
+        <form method="post" class="application-form">
+
+            <div class="application-form_mainPart">
+
+                <div class="application-form_part">
+                    <label for="name" class="application-form__label">Имя:</label>
+                    <input type="text" name="name" class="application-form__input" required>
+                    <label for="name" name="name" class="application-form__label_error">Ошибка</label>
+        
+                    <br><label for="phone" class="application-form__label">Телефон:</label>
+                    <input type="phone" name="phone" class="application-form__input" required>
+                    <label for="phone" nmae='phone' class="application-form__label_error">Номер телефона должен быть в форате +7хххххххххх</label>
+                </div>
+    
+                <div class="application-form_part">
+                    <label for="message" class="application-form__label">Сообщение:</label>
+                    <textarea class="application-form__input area" name="message" cols="30" rows="10" maxlength="255"></textarea>
+                </div>
+
+            </div>
+
+            <button type="submit" class="application-form__button">Отправить</button>
+
+            <p class="application-form__message">Заявка отправлена!</p>
+
+
+        </form>
+    </div>
+
+
+
+    <header class="head">
+        <!--Шапка-->
+        <div class="header-logo logo"><a href="index.html"><img src="img/Logo.svg" alt="logo"></a></div>
+        <nav>
+            <a class="nav-item text" href="index.html">главная</a>
+            <a class="nav-item text" href="index.html">о компании</a>
+            <a class="nav-item text" href="index.html">где мы находимся</a>
+        </nav>
+        <button class="applicationBtn btn button text">Cвязаться с нами</button>
+        <button class="button text loginBtn">Личный кабинет</button>
+
+
+        
+    </header>
+    <div class="separator"><br></div>
+
+    <main class="index">
+
+        
+        <!--Контент-->
+
+        <!--секция 1-->
+        <section class="index__section-one">
+            <div class="index__section-one__container index-container container">
+
+                <h1 class="index__section-one__container__section-title section-title">Разработка мобильных <br>приложений </h1>
+                <p class="index__section-one__container__text section-one-text text">Разработка мобильных приложений индивидуально для вашей компании. Мы реализуем широкий спектр решений под любую задачу области, а также создаем современный и удобный дизайн в интересующем вас стиле. </p>
+                <div class="index__section-one__container__about-button"><form action="about.html"><button class="about-button button text">Подробнее</button></form></div>
+                <div class="index__section-one__container__separator separator"></div>
+           
+            </div>
+            
+        </section>
+        
+
+        
+        <!--секция 2-->
+        <section class="index__section-two">
+            <div class="index__section-two__container index-container container">
+                <h1 class="index__section-two__container__section-title section-title">Этапы разработки</h1>
+                <div class="index__section-two__container__cards-container card-container">
+                    <div class="index__section-two__container__cards-container__card card">
+                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/develope.svg" alt="разработка">
+                        <h2 class="index__section-two__container__cards-container__card__title card-title title">Разработка функционала</h2>
+                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
+                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы создаем все требуемые вами на этапе проектирования функции, которые должно выполнять приложение</p>
+                    </div>
+
+                    <div class="index__section-two__container__cards-container__card card">
+                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/design.svg" alt="разработка">
+                        <h2 class="index__section-two__container__cards-container__card__title card-title title">UI/UX <br>
+                            дизайн</h2>
+                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
+                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы создаем дизайн интерфейса приложения и оптимизируем его для лучшего взаимодействия с пользователем </p>
+                    </div>
+
+                    <div class="index__section-two__container__cards-container__card card">
+                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/release.svg" alt="разработка">
+                        <h2 class="index__section-two__container__cards-container__card__title card-title title">Релиз и продвижение</h2>
+                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
+                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы запускаем готовое приложение и обеспечиваем его продвижение в популярных сервисах</p>
+                    </div>
+
+                    <div class="index__section-two__container__cards-container__card card">
+                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/support.svg" alt="разработка">
+                        <h2 class="index__section-two__container__cards-container__card__title card-title titlw">Поддержка приложения</h2>
+                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
+                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы поддерживаем конкурентоспособность приложения и, если нужно, вносим нужные вам изменения</p>
+                    </div>
+                </div>
+                
+            </div>
+
+        </section>
+        <div class="separator"></div>
+
+        
+        <!--секция 3-->
+        <section class="index__section-three">
+            <div class="index__section-three__container index-container container">
+                <h1 class="index__section-three__container__section-title section-title">Приемущества приложений</h1>
+                <!--слайдер-->
+                <div class="index__section-three__container__slider">
+                    <div class="index__section-three__container__slider__slide slider1-slide slider1-slide1"></div>
+                    <div class="index__section-three__container__slider__slide slider1-slide slider1-slide2"></div>
+                    <div class="index__section-three__container__slider__slide slider1-slide slider1-slide3"></div>
+                
+                </div>
+                <!-- -->
+                
+            </div>
+
+        </section>
+        <div class="separator"></div>
+
+    
+        <!--секция 4-->
+        <section class="index__section-four">
+            <div class="index__section-four__container index-container container">
+                <h1 class="index__section-four__container__section-title section-title">Наши проекты</h1>
+
+                <!--слайдер-->
+                <div class="index__section-four__container__slider slider2">
+                    
+                    <input class="index__section-four__container__slider__slide slider2-slide" checked type="radio" name="s">
+                    <input class="index__section-four__container__slider__slide slider2-slide" type="radio" name="s">
+                    <input class="index__section-four__container__slider__slide slider2-slide" type="radio" name="s">
+                    
+                </div>
+
+            </div>
+
+        </section>
+
+        
+    </main>
+
+ 
+
+   <!--футер-->
+    <footer class="footer" id="footer">
+        <div class="separator"></div>
+        <div class="footer-part-one">
+            <h1 class="footer-part-one__footer-title section-title">Заинтересовали?<br>Остались вопросы?</h1>
+            <a href="#header"><button class="applicationBtn btn button text">связаться с нами</button></a>
+
+        <div class="footer-part-two">
+            <div class="separator"></div>
+            <div class="footer-part-two__footer-logo logo"><a href="index.html"><img class="footer-part-two__footer-logo__logo-image logo-image" src="img/Logo.svg" alt="logo"></a></div>
+            
+        </div>
+    </footer>
+    
+    
+</body>
+</html>

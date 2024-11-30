@@ -122,7 +122,7 @@ function initClients(){
         <th>Проекты</th>
         <th>Изменение</th>
         <th>Удаление</th>
-        <th>Проекты</th>
+        <th>Список проектов</th>
 
     </tr>
     

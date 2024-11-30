@@ -3,34 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная</title>
+    <title>Разработка мобильных приложений</title>
 
-    <!--Favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-    <link rel="manifest" href="icons/site.webmanifest">
-    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
-    <!--CSS-->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- js -->
-    <script defer src="js/ClientsInteraction.json"></script>
-    <script defer src="js/DataBase.js"></script>
-    <script defer src="js/validation.js"></script>
-    <script defer src="js/main.js"></script>
-    <script defer src="js/auth.js"></script>
-
-
+        <!--CSS-->
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/styles.css">
+    
+        <!-- js -->
+        <script defer src="js/DataBase.js"></script>
+        <script defer src="js/auth.js"></script>
+        <script defer src="js/main.js"></script>
+        <script defer src="js/validation.js"></script>
+   
+      
 </head>
 <body>
 
-<div class="form-overlay"></div>
+
+    <div class="form-overlay"></div>
 <!-- Окно авторизации -->
     <div class="login-popup popup">
         <h2>Вход</h2>
@@ -82,141 +73,143 @@
         </form>
     </div>
 
-
-
-    <header class="head">
-        <!--Шапка-->
-        <div class="header-logo logo"><a href="index.html"><img src="img/Logo.svg" alt="logo"></a></div>
-        <nav>
-            <a class="nav-item text" href="index.html">главная</a>
-            <a class="nav-item text" href="index.html">о компании</a>
-            <a class="nav-item text" href="index.html">где мы находимся</a>
+    <div class="app-container">
+        <nav class="top-nav" role="navigation">
+            <div class="brand-logo" role="banner">LOGO/NAME</div>
+            <button class="account-btn logInBtn" aria-label="Личный кабинет">Личный кабинет</button>
         </nav>
-        <button class="applicationBtn btn button text">Cвязаться с нами</button>
-        <button class="button text loginBtn">Личный кабинет</button>
 
+        <div class="divider" role="separator"></div>
 
-        
-    </header>
-    <div class="separator"><br></div>
+        <main>
+            <section class="hero-section" role="region" aria-label="Главный баннер">
+                <img src="icons/section1-bg.svg" alt="" class="hero-bg" aria-hidden="true" />
+                <div class="hero-content">
+                    <h1 class="hero-title">Разработка мобильных приложений</h1>
+                    <p class="hero-subtitle">
+                        Разработка мобильных приложений индивидуально для вашей компании. Мы
+                        реализуем широкий спектр решений под любую задачу области, а также
+                        создаем современный и удобный дизайн в интересующем вас стиле.
+                    </p>
+                    <button class="cta-button call-backBtn" aria-label="Узнать подробнее">Подробнее</button>
+                </div>
+            </section>
 
-    <main class="index">
+            <div class="divider" role="separator"></div>
 
-        
-        <!--Контент-->
-
-        <!--секция 1-->
-        <section class="index__section-one">
-            <div class="index__section-one__container index-container container">
-
-                <h1 class="index__section-one__container__section-title section-title">Разработка мобильных <br>приложений </h1>
-                <p class="index__section-one__container__text section-one-text text">Разработка мобильных приложений индивидуально для вашей компании. Мы реализуем широкий спектр решений под любую задачу области, а также создаем современный и удобный дизайн в интересующем вас стиле. </p>
-                <div class="index__section-one__container__about-button"><form action="about.html"><button class="about-button button text">Подробнее</button></form></div>
-                <div class="index__section-one__container__separator separator"></div>
-           
-            </div>
-            
-        </section>
-        
-
-        
-        <!--секция 2-->
-        <section class="index__section-two">
-            <div class="index__section-two__container index-container container">
-                <h1 class="index__section-two__container__section-title section-title">Этапы разработки</h1>
-                <div class="index__section-two__container__cards-container card-container">
-                    <div class="index__section-two__container__cards-container__card card">
-                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/develope.svg" alt="разработка">
-                        <h2 class="index__section-two__container__cards-container__card__title card-title title">Разработка функционала</h2>
-                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
-                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы создаем все требуемые вами на этапе проектирования функции, которые должно выполнять приложение</p>
-                    </div>
-
-                    <div class="index__section-two__container__cards-container__card card">
-                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/design.svg" alt="разработка">
-                        <h2 class="index__section-two__container__cards-container__card__title card-title title">UI/UX <br>
-                            дизайн</h2>
-                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
-                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы создаем дизайн интерфейса приложения и оптимизируем его для лучшего взаимодействия с пользователем </p>
-                    </div>
-
-                    <div class="index__section-two__container__cards-container__card card">
-                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/release.svg" alt="разработка">
-                        <h2 class="index__section-two__container__cards-container__card__title card-title title">Релиз и продвижение</h2>
-                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
-                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы запускаем готовое приложение и обеспечиваем его продвижение в популярных сервисах</p>
-                    </div>
-
-                    <div class="index__section-two__container__cards-container__card card">
-                        <img class="index__section-two__container__cards-container__card__img card-img" src="img/support.svg" alt="разработка">
-                        <h2 class="index__section-two__container__cards-container__card__title card-title titlw">Поддержка приложения</h2>
-                        <div class="index__section-two__container__cards-container__card__separator card-separator separator"><br></div>
-                        <p class="index__section-two__container__cards-container__card__text card-text text">На этом этапе мы поддерживаем конкурентоспособность приложения и, если нужно, вносим нужные вам изменения</p>
+            <section class="feature-section" role="region" aria-label="Этапы разработки">
+                <div class="feature-content">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/312b5ec04ebfda91e17f4f27833c7f654dd5b630717ce0940c68d5abbcf0a221?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-icon" aria-hidden="true" />
+                    <div class="feature-details">
+                        <h2 class="feature-title">ПРОЕКТИРОВАНИЕ</h2>
+                        <p class="feature-description">
+                            На этом этапе мы обсуждаем с вами то, каким вы хотите видеть
+                            ваше будущее приложение и какие функции оно должно выполнять
+                        </p>
                     </div>
                 </div>
-                
-            </div>
-
-        </section>
-        <div class="separator"></div>
-
-        
-        <!--секция 3-->
-        <section class="index__section-three">
-            <div class="index__section-three__container index-container container">
-                <h1 class="index__section-three__container__section-title section-title">Приемущества приложений</h1>
-                <!--слайдер-->
-                <div class="index__section-three__container__slider">
-                    <div class="index__section-three__container__slider__slide slider1-slide slider1-slide1"></div>
-                    <div class="index__section-three__container__slider__slide slider1-slide slider1-slide2"></div>
-                    <div class="index__section-three__container__slider__slide slider1-slide slider1-slide3"></div>
-                
+                <div class="feature-image-wrapper">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88eaf7a5905b28689d76f9d8786342fe6b733bebfab28cd94f912ba869c051?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-image" aria-hidden="true" />
                 </div>
-                <!-- -->
-                
-            </div>
+            </section>
 
-        </section>
-        <div class="separator"></div>
-
-    
-        <!--секция 4-->
-        <section class="index__section-four">
-            <div class="index__section-four__container index-container container">
-                <h1 class="index__section-four__container__section-title section-title">Наши проекты</h1>
-
-                <!--слайдер-->
-                <div class="index__section-four__container__slider slider2">
-                    
-                    <input class="index__section-four__container__slider__slide slider2-slide" checked type="radio" name="s">
-                    <input class="index__section-four__container__slider__slide slider2-slide" type="radio" name="s">
-                    <input class="index__section-four__container__slider__slide slider2-slide" type="radio" name="s">
-                    
+            <section class="feature-section" role="region" aria-label="Этап разработки">
+                <div class="feature-content">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dd84be76d1777b8024e620311f466fa5346cfeb58bd4d96013ba39d2324eb92?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-icon" aria-hidden="true" />
+                    <div class="feature-details">
+                        <h2 class="feature-title">РАЗРАБОТКА</h2>
+                        <p class="feature-description">
+                            На этом этапе мы создаем все требуемые вами на этапе
+                            проектирования функции, которые должно выполнять приложение
+                        </p>
+                    </div>
                 </div>
+                <div class="feature-image-wrapper">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/85f2de11ddec5e03921167b63e39031aa7f05733f365ee5df4755631d53dea11?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-image" aria-hidden="true" />
+                </div>
+            </section>
 
-            </div>
+            <section class="feature-section" role="region" aria-label="Этап внедрения">
+                <div class="feature-content">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0d434911d4245f574642a947ebfede044fe3ca2a914a3c0f713c40f989cacbf1?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-icon" aria-hidden="true" />
+                    <div class="feature-details">
+                        <h2 class="feature-title">ВНЕДРЕНИЕ</h2>
+                        <p class="feature-description">
+                            На этом этапе мы запускаем готовое приложение и обеспечиваем
+                            его продвижение в популярных сервисах
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-image-wrapper">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2e8c25a2c6c895bc398f541e0da97c5a3a9270ca162a35eb5127a02d1afb8e12?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-image" aria-hidden="true" />
+                </div>
+            </section>
 
-        </section>
+            <section class="feature-section" role="region" aria-label="Этап поддержки">
+                <div class="feature-content">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4a4648328e88b84c366a0acd08c2406cffd876f5984150658faba2fec4f63d37?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-icon" aria-hidden="true" />
+                    <div class="feature-details">
+                        <h2 class="feature-title">ПОДДЕРЖКА</h2>
+                        <p class="feature-description">
+                            На этом этапе мы поддерживаем конкурентоспособность приложения
+                            и, если нужно, вносим нужные вам изменения
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-image-wrapper">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d0a758f9ddbc348b1de9e7a6d8461da1aa1ab767ac9309c7ceb505d52e86c27a?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="feature-image" aria-hidden="true" />
+                </div>
+            </section>
 
-        
-    </main>
+            <section class="benefits-section" role="region" aria-label="Преимущества">
+                <div class="benefits-grid">
+                    <article class="benefit-card">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/62af01e9df99e969503e29bda447c75826330c3990e127fd700010bc712ea8cf?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="benefit-icon" aria-hidden="true" />
+                        <h3 class="benefit-title">Распространенность</h3>
+                        <p class="benefit-description">
+                            Мобильные приложения ускоряют распространение информации о компании
+                        </p>
+                    </article>
 
- 
+                    <article class="benefit-card">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2a47a0cd0db27e3d26d1d337ec3118f7d5d34624c6086fc4c0d0bc70974e0d3c?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="benefit-icon" aria-hidden="true" />
+                        <h3 class="benefit-title">Удобство</h3>
+                        <p class="benefit-description">
+                            Мобильные приложения можно использовать в любом месте
+                        </p>
+                    </article>
 
-   <!--футер-->
-    <footer class="footer" id="footer">
-        <div class="separator"></div>
-        <div class="footer-part-one">
-            <h1 class="footer-part-one__footer-title section-title">Заинтересовали?<br>Остались вопросы?</h1>
-            <a href="#header"><button class="applicationBtn btn button text">связаться с нами</button></a>
+                    <article class="benefit-card">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/abaee540cf51240617db92e7bb58927dcbfea30d3c3102dc443d95a121fe7db4?placeholderIfAbsent=true&apiKey=6b8198d49c0d4c2aba0785b51097914d" alt="" class="benefit-icon" aria-hidden="true" />
+                        <h3 class="benefit-title">Скорость</h3>
+                        <p class="benefit-description">
+                            Мобильные приложения ускоряют взаимодействие с требуемым функционалом
+                        </p>
+                    </article>
+                </div>
+            </section>
 
-        <div class="footer-part-two">
-            <div class="separator"></div>
-            <div class="footer-part-two__footer-logo logo"><a href="index.html"><img class="footer-part-two__footer-logo__logo-image logo-image" src="img/Logo.svg" alt="logo"></a></div>
-            
-        </div>
-    </footer>
-    
-    
+            <section class="contact-section" role="region" aria-label="Контакты">
+                <div class="contact-content">
+                    <h2 class="contact-title">
+                        Интересно?
+                        <br />
+                        Есть вопросы?
+                    </h2>
+                    <p class="contact-description">
+                        Приходите к нам или оставляйте заявку, чтобы обсудить идею!
+                    </p>
+                    <button class="cta-button call-backBtn" aria-label="Оставить заявку">Оставить заявку</button>
+                </div>
+                <div class="map-container" role="complementary" aria-label="Карта">
+                    <iframe class="map-container__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2242.930311534313!2d37.60043991594311!3d55.72559548053559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54afb7306836d%3A0x3a63a9751f5e14f1!2z0L_RgNC-0LHRg9C70L7RgdC40LzQvdCw0L3RgtC4!5e0!3m2!1sru!2sru!4v1656404541419!5m2!1sru!2sru" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <div class="brand-logo">LOGO/NAME</div>
+        </footer>
+    </div>
 </body>
 </html>
