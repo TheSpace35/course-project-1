@@ -1,8 +1,10 @@
 InitLocalStorage();
 
+
+
 const loginMenuBtn = document.querySelector('.loginBtn');
 const loginPopup = document.querySelector('.login-popup');
-const loginBtn = loginPopup.querySelector('.login-form__button');
+const loginBtn = loginPopup.querySelector('.login-form__button') || '';
 
 const applicationMenuBtn = document.querySelectorAll('.applicationBtn');
 const applicationPopup = document.querySelector('.application-popup');
