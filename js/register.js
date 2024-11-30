@@ -51,7 +51,7 @@ function CreateClient(){
                 "AcceptCalls":"1"
             }
   
-    let clients = JSON.parse(localStorage.getItem('CLIENTS'));
+    let clients = JSON.parse(localStorage.getItem('CLIENTS'))||[];
     clients.push(client);
     console.log(client);
     localStorage.setItem('CLIENTS',JSON.stringify(clients));

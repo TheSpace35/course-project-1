@@ -56,20 +56,29 @@
         </section>
 
         <section class="projectStatusHistory">
-            <div class="newStatus">
-                <label for="statusName" class="newStatus__name">Имя статуса</label>
-                <input type="text" class="newStatus__name_input" name="statusName">
+            <form class="newStatus">
 
-                <label for="statusColor" class="newStatus__color">Цвет статуса</label>
-                <input type="color" class="newStatus__color_input" name="statusColor">
+                <div class="newStatus__first">
 
-                <label for="statusDescription" class="newStatus__description">Описание статуса</label>
-                <textarea class="newStatus__description_input" name="statusDescription" cols="30" rows="10"></textarea>
+                    <label for="statusName" class="newStatus__name">Имя статуса</label>
+                    <input type="text" class="newStatus__name_input" name="statusName">
+    
+                    <label for="statusColor" class="newStatus__color">Цвет статуса</label>
+                    <input type="color" class="newStatus__color_input" name="statusColor">
 
-                <button type="submit" class="newStatus__sendBtn">Применить</button>
+                </div>
 
-            </div>
-            
+                <div class="newStatus__second">
+
+                    <label for="statusDescription" class="newStatus__description">Описание статуса</label>
+                    <textarea class="newStatus__description_input" name="statusDescription" cols="30" rows="10"></textarea>
+    
+                    <button type="submit" class="newStatus__sendBtn">Применить</button>
+
+                </div>
+
+            </form>
+
             <table class="projectStatusHistory__table">
                 <tr>
                     <th>Статус</th>

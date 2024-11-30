@@ -46,6 +46,12 @@ else if(JSON.parse(localStorage.getItem('session')).role !== 'admin'){
 
 
 
+/// Изменение данных администратора ///
+
+document.querySelector('.settings__layout__form_saveBtn_admin').addEventListener('click', ChangeUserData('admin', localStorage.getItem('session').id, {}));
+
+///
+
 
 
 changeMode.addEventListener('click', e=>{
@@ -198,6 +204,7 @@ function initClients(){
             if(e.target.closest('tr').nextElementSibling.style.display === 'flex'){
 
                 e.target.closest('tr').nextElementSibling.style.display = 'none';
+                
                 e.target.style.transform = '';
             }
             else{
@@ -222,13 +229,12 @@ function initClients(){
     });
 
     /// Окно добавление проекта ///
-    let clientId = 0;
 
     document.querySelectorAll('.projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
 
     const projectAddBtn = document.querySelectorAll('.clients__table_addProjectBtn');
     projectAddBtn.forEach(btn=>{btn.addEventListener('click', e=>{
-        clientId = e.target.closest('tr').closest('td').closest('tr').previousElementSibling.querySelector('.clients__table_id').textContent;
+        clientIdForForm = e.target.closest('tr').closest('td').closest('tr').previousElementSibling.querySelector('.clients__table_id').textContent;
         projectAddFormBtn.removeAttribute('disabled');
         
         document.querySelector('.projectAdd-form__message').style.opacity = 0;
@@ -246,7 +252,6 @@ function initClients(){
         
         if (!projectAddPopup.contains(e.target) && ![...projectAddBtn].some(el => el.contains(e.target))) {
             projectAddPopup.classList.remove('active');
-            clientId = 0;
             document.querySelector('.form-overlay').style.display = 'none';
             
         }
@@ -255,32 +260,47 @@ function initClients(){
     ///
 
     /// Обработка кнрпки добавления проекта ///
-
+    
+   
     projectAddFormBtn.addEventListener('click', e => {
+   
         e.preventDefault();
+
+        console.log(projectAddFormBtn.listeners);
         const form = e.target.closest('form');
-        form.querySelectorAll('.projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
-        if (form.checkValidity()) {
-            if(!validate('addProject',{'type':'name','element':form.name}).length > 0){
-                e.target.setAttribute('disabled', 'disabled');
-                
-                document.querySelector('.projectAdd-form__message').style.opacity = 1;
-                AddProject(clientId);
-                console.log(getTable('PROJECTS'));
+        document.querySelectorAll('.projectAdd-form__label_error').forEach(e=> e.style.opacity = 0);
+        const validCheck = validate('addProject',{'type':'name','element':form.name});
+        if(!validCheck.length > 0){
+            e.target.setAttribute('disabled', 'disabled');
+            
+            document.querySelector('.projectAdd-form__message').style.opacity = 1;
+
+            AddProject(clientIdForForm);
+            console.log(getTable('PROJECTS'));
         
-                setTimeout(()=>{
-                    projectAddPopup.classList.remove('active');
-                    document.querySelector('.form-overlay').style.display = 'none';
-                    initClients();
-                    form.reset();
+            setTimeout(()=>{
+                projectAddPopup.classList.remove('active');
+                document.querySelector('.form-overlay').style.display = 'none';
+                initClients();
+                form.reset();
         
-                }, 1000)
-            }
-    
-    
-        } else {
-            form.reportValidity();
+            }, 1000)
         }
+        else{
+            validCheck.forEach(el => {
+
+                form.querySelectorAll('.projectAdd-form__input').forEach(e => {
+                    if(e.name === el.type){
+                        e.nextElementSibling.style.opacity = 1;
+
+                    }
+                });
+               
+            });
+        }
+    
+    
+       
     });
 
     ///
@@ -447,6 +467,21 @@ function initClients(){
 
 
 
+/// Функция удаления заявки ///
+
+function deleteApplicationRow(event) {
+    const row = event.target.closest('tr');
+    let applications = getTable('APPLICATIONS');
+    applications = applications.filter(app => app.id !== row.querySelector('.applications__table_id').textContent);
+    localStorage.setItem('APPLICATIONS', JSON.stringify(applications));
+    row.nextElementSibling.remove();
+    row.remove();
+}
+
+///
+
+
+
 function initApplications(){
 
     applicationsTable.innerHTML = `
@@ -556,6 +591,7 @@ function initApplications(){
             e.target.classList.add('applications__table_RemoveBtn');
             e.target.src = 'icons/remove.svg';
             e.target.closest('tr').querySelector('.applications__table_status').textContent = 'Обработано';
+            e.target.addEventListener('click', deleteApplicationRow)
             
             
         });
@@ -568,19 +604,8 @@ function initApplications(){
     /// Удаление заявки //
     applicationsTable.querySelectorAll('.applications__table_RemoveBtn').forEach(el=>{
 
-        el.addEventListener('click', e=>{
-            let applications = getTable('APPLICATIONS');
-            applications.forEach(app=>{
-                if(app.id === el.closest('tr').querySelector('.applications__table_id').textContent){
-                    applications = applications.filter(app => app.id !== el.closest('tr').querySelector('.applications__table_id').textContent);
-                    localStorage.setItem('APPLICATIONS', JSON.stringify(applications));
-
-                }
-            })
-            console.log(e.target.closest('tr'));
-            e.target.closest('tr').nextElementSibling.remove();
-            e.target.closest('tr').remove();
-            
+        applicationsTable.querySelectorAll('.applications__table_RemoveBtn').forEach(el => {
+            el.addEventListener('click', deleteApplicationRow);
         });
 
 

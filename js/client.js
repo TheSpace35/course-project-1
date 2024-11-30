@@ -127,7 +127,7 @@ function LoadProject(projectId){
 
 
             status.innerHTML = `
-            <td>${el.StatusName}</td>
+            <td class="statusName">${el.StatusName}</td>
             <td>${el.Comment}</td>
             ${el.ClientAccept === 0 ? `<td class = 'projectStatusHistory__table__status_acceptBtn_td'><img class="projectStatusHistory__table__status_acceptBtn" src="/icons/complete.svg" alt="подтвердить"></td>
                 <td class = 'projectStatusHistory__table__status_restoreBtn_td'><img class="projectStatusHistory__table__status_restoreBtn" src="/icons/restore.svg" alt="отменить выбор"></td>
@@ -141,6 +141,8 @@ function LoadProject(projectId){
             
             }
             `;
+
+            status.querySelector('.statusName').style.color = el.StatusColor;
 
 
             /// принятие завешения этапа ///

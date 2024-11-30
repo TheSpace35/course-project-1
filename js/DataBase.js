@@ -55,7 +55,7 @@ function InitLocalStorage(){
 /// Получение данных из localStorage
 function getData(tableName, field){
     let data = [];
-    const table = JSON.parse(localStorage.getItem(tableName));
+    const table = JSON.parse(localStorage.getItem(tableName)) || [];
     table.forEach(element => {
         data.push(parseInt(element[field]));
     });
@@ -68,7 +68,7 @@ function getData(tableName, field){
 
 /// Получение таблицы из localStorage
 function getTable(tableName){
-    const table = JSON.parse(localStorage.getItem(tableName));
+    const table = JSON.parse(localStorage.getItem(tableName)) || [];
     return table;
 };
 
@@ -137,6 +137,22 @@ function UpdateFromValue(tableName, id, key, value){
 }
 
 ///
+
+
+function ChangeUserData(role, id, data){
+    
+    let table = role === 'admin' ? getTable('ADMINS') : getTable('CLIENTS');
+
+    let updateElementIndex = role === 'admin' ? table.findIndex(element => element.id === id) : table.findIndex(element => element.Id === id);
+    for (const key in data) {
+        table[updateElementIndex][key] = data[key];
+    }
+    updateTable(role === 'admin' ? 'ADMINS' : 'CLIENTS', table);
+
+
+
+
+}
 
 
 

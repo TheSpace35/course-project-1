@@ -19,7 +19,7 @@ else if(JSON.parse(localStorage.getItem('session')).role === 'admin'){
 /// Добавлене проекта ///
 
 function AddStatus(projectId, statusName='Начат', comment='Начата работа над проектом', statusColor = "#FF4500"){
-    let statuses = JSON.parse(localStorage.getItem('STATUSES'));
+    let statuses = JSON.parse(localStorage.getItem('STATUSES'))  || [];
 
     let status = {
         "id":`${getTable('STATUSES').length === 0 ? 0 : Math.max(...getData('STATUSES','id'))+1}`,
@@ -39,11 +39,10 @@ function AddStatus(projectId, statusName='Начат', comment='Начата р�
 
 function AddProject(clientId){
 
-    console.log();
 
     const id = getTable('PROJECTS').length === 0 ? 1 : (Math.max(...getData('PROJECTS','id'))+1);
 
-    console.log(id);
+    console.log(id+0);
 
     let project = {
         "id":`${id}`,
@@ -78,11 +77,11 @@ function AddProject(clientId){
 
 function LoadInfo(projectId){
     projectId = projectId.split('=')[1];
-    let project = JSON.parse(localStorage.getItem('PROJECTS'));
+    let project = JSON.parse(localStorage.getItem('PROJECTS')) || [];
     project = project.find(el => el.id == projectId);
 
 
-    const statusHistory = JSON.parse(localStorage.getItem('STATUSES')).filter(el => el.ProjectID == projectId);
+    const statusHistory = JSON.parse(localStorage.getItem('STATUSES')).filter(el => el.ProjectID == projectId) || [];
 
 
     document.querySelector('.projectTitle').textContent = `${project.ProjectName}`;
@@ -90,28 +89,41 @@ function LoadInfo(projectId){
     document.querySelector('.projectDescription').textContent = `${project.ProjectDescription}`;
     document.querySelector('.projectStatus').textContent = `${statusHistory[statusHistory.length-1].StatusName}`;
 
+    document.querySelector('.projectStatusHistory__table').textContent = '';
+
     statusHistory.forEach(el=>{
         let status = document.createElement('tr');
-        if(statusHistory.indexOf(el) === 0){
-            console.log(el.ClientAccept);
-            status.innerHTML = `
-            <td>${el.StatusName}</td>
-            <td>${el.Comment}</td>
-            <td rowspan="2">${el.ClientAccept === 0 ? 'Не оценено' : el.ClientAccept === 1 ? 'Отклонено' : 'Подтверждено'}</td>
-            `;
-        }
-        else{
-            status.innerHTML = `
-            <td>${el.StatusName}</td>
-            <td>${el.Comment}</td>
-            <td>Закрыт</td>
-            `;
 
-        }
+        status.innerHTML = `
+        <td class="statusName">${el.StatusName}</td>
+        <td>${el.Comment}</td>
+        <td rowspan="2">${el.ClientAccept === '0' ? 'Не оценено' : el.ClientAccept === '1' ? 'Отклонено' : 'Подтверждено'}</td>
+        `;
+        status.querySelector('.statusName').style.color = el.StatusColor;
+
+
         document.querySelector('.projectStatusHistory__table').appendChild(status);
         });
 
 };
+
+/// Обработка кнопки изменение статуса ///
+
+const setStatusForm = document.querySelector('.newStatus');
+
+setStatusForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const projectId = new URLSearchParams(location.search).get('projectId');
+    if (projectId) {
+        console.log(projectId, setStatusForm.statusName.value, setStatusForm.statusDescription.value);
+        AddStatus(projectId, setStatusForm.statusName.value, setStatusForm.statusDescription.value, setStatusForm.statusColor.value);
+        setStatusForm.reset();
+
+        LoadInfo(location.search);}
+        
+});
+
+///
 
 
 
