@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Администратор</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- js -->
+    <script defer src="js/DataBase.js"></script>
+    <script defer src="js/register.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/project.js"></script>
+    <script defer src="js/admin.js"></script>
+
+
+
+</head>
+<body>
+    <div class="form-overlay"></div>
+    <heade class="head">
+
+        <div class="head-container">
+
+            <button class="settingsBtn btn button"><img src="icons/settings.svg" alt="настройки"></button>
+            <h1 class="adminTitle title">КЛИЕНТЫ</h1>
+            <button class="changeMode cta-button ">ЗАЯВКИ</button>
+    
+            <button class="logOutBtn settingsBtn btn button"><img src="icons/logout.svg" alt="выход"></button>
+
+
+
+        </div>
+        
+    </heade>
+
+    <main>
+        <section class="adminSettings settings">
+
+            <div class="settings__layout">
+
+                <form class="settings__layout__form" action="#">
+
+                    <label for="login" class="settings__layout__form_login label">Логин:</label>
+                    <input type="text" class="settings__layout__form_email_input input" name="login">
+
+                    <label for="email" class="settings__layout__form_email label">Email:</label>
+                    <input type="email" class="settings__layout__form_email_input input" name="email">
+
+                    <label for="phone" class="settings__layout__form_phone label">Номер телефона:</label>
+                    <input type="tel" class="settings__layout__form_phone_input input" name="phone">
+
+                    <label for="password" class="settings__layout__form_password label">Пароль:</label>
+                    <input type="password" class="settings__layout__form_password_input input" name="password">
+
+                    <label for="passwordConfirm" class="settings__layout__form_passwordConfirm label">Пподтверждение пароля:</label>
+                    <input type="password" class="settings__layout__form_passwordConfirm_input input" name="passwordConfirm">
+
+                    <button type="submit" class="settings__layout__form_saveBtn_admin account-btn">Сохранить</button>
+
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <section class="applications">
+
+            <table class="applications__table">
+                <tr>
+
+                    <th>id</th>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                    <th>Сообщение</th>
+
+                </tr>
+
+
+ 
+            </table>
+
+        </section>
+
+        <section class="clients">
+
+            <button class="clients__add_btn account-btn">Добавить</button>
+
+      
+            <div class="clientAdd-popup popup">
+                <h2 class="title">Добавление клиента</h2>
+                <form method="post" class="clientAdd-form">
+                    <label for="company" class="clientAdd-form__label">Название компании:</label>
+                    <input type="text" name="company" class="clientAdd-form__input" required>
+                    <label for="company" class="clientAdd-form__label_error error">Ошибка</label>
+        
+                    <label for="phone" class="clientAdd-form__label">Номер телефона</label>
+                    <input type="text" name="phone" class="clientAdd-form__input" required>
+                    <label for="phone" class="clientAdd-form__label_error">Ошибка</label>
+
+                    <label for="email" class="clientAdd-form__label">Email</label>
+                    <input type="text" name="email" class="clientAdd-form__input" required>
+                    <label for="email" class="clientAdd-form__label_error">Ошибка</label>
+
+                    <label for="login" class="clientAdd-form__label">Логин</label>
+                    <input type="text" name="login" class="clientAdd-form__input" required>
+                    <label for="login" class="clientAdd-form__label_error">Ошибка</label>
+        
+                    <button class="clientAdd-form__button cta-button">Добавить</button>
+        
+                    <p class="clientAdd-form__message">Клиент добавлен, пароль отправлен на Email! (Можно просмотреть в консоли)</p>
+                </form>
+            </div>
+
+
+            <div class="clientEdit-popup popup">
+                <h2 class="title">Редактирование клиента</h2>
+                <form method="post" class="clientEdit-form" name="clientEdit">
+                    <label for="Company" class="clientEdit-form__label label">Название компании:</label>
+                    <input type="text" name="Company" class="clientEdit-form__input input" required>
+                    <label for="Company" class="clientEdit-form__label_error error">Ошибка</label>
+        
+                    <label for="Phone" class="clientEdit-form__label label">Номер телефона</label>
+                    <input type="text" name="Phone" class="clientEdit-form__input input" required>
+                    <label for="Phone" class="clientEdit-form__label_error error">Ошибка</label>
+
+                    <label for="Email" class="clientEdit-form__label label">Email</label>
+                    <input type="text" name="Email" class="clientEdit-form__input input" required>
+                    <label for="Email" class="clientEdit-form__label_error error">Ошибка</label>
+
+                    <label for="Login" class="clientEdit-form__label label">Логин</label>
+                    <input type="text" name="Login" class="clientEdit-form__input input" required>
+                    <label for="Login" class="clientEdit-form__label_error error">Ошибка</label>
+
+                    <div class="resetPass">
+
+                        <label for="passReset" class="clientEdit-form__label label">Сбросить пароль</label>
+                        <input type="checkbox" name="passReset" class="clientEdit-form__input input">
+
+                    </div>
+
+        
+                    <button class="clientEdit-form__button cta-button">Сохранить</button>
+        
+                    <p class="clientEdit-form__message message">Клиент изменен!</p>
+                </form>
+            </div>
+
+
+            <div class="projectEdit-popup popup">
+                <h2 class="title">Редактирование проекта</h2>
+                <form method="post" class="projectEdit-form" name="projectEdit">
+                    <label for="ProjectName" class="projectEdit-form__label">Название проекта:</label>
+                    <input type="text" name="ProjectName" class="projectEdit-form__input input" required>
+                    <label for="ProjectName" class="projectEdit-form__label_error error">Ошибка</label>
+
+                    <label for="ProjectDescription" class="projectEdit-form__label">Описание проекта:</label>
+                    <textarea name="ProjectDescription" class="projectEdit-form__input input" required></textarea>
+                    <label for="ProjectDescription" class="projectEdit-form__label_error error">Ошибка</label>
+
+                    <button class="projectEdit-form__button cta-button">Сохранить</button>
+        
+                    <p class="projectEdit-form__message message">Проект изменен!</p>
+                </form>
+            </div>
+
+
+            <div class="projectAdd-popup popup">
+                <h2 class="title">Добавление проекта</h2>
+                <form method="post" class="projectAdd-form">
+                    <label for="name" class="projectAdd-form__label">Название проекта:</label>
+                    <input type="text" name="name" class="projectAdd-form__input" required>
+                    <label for="name" class="projectAdd-form__label_error error">Ошибка</label>
+
+                    <label for="description" class="projectAdd-form__label">Описание проекта:</label>
+                    <textarea class="projectAdd-form__input area" name="description" cols="30" rows="10" maxlength="255"></textarea>
+             
+                    <button class="projectAdd-form__button cta-button">Добавить</button>
+        
+                    <p class="projectAdd-form__message message">Проект добавлен</p>
+                </form>
+            </div>
+
+            <table class="clients__table">
+                <tr>
+
+                    <th>id</th>
+                    <th>Название компании</th>
+                    <th>Номер телефона</th>
+                    <th>Проекты</th>
+                    <th>Изменение</th>
+                    <th>Удаление</th>
+                    <th>Список проектов</th>
+
+                </tr>
+
+
+
+                
+            </table>
+
+        </section>
+
+
+    </main>
+</body>
+</html>

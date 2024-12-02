@@ -1,0 +1,52 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"ClientsInteraction"},
+{"type":"table","name":"Admins","database":"ClientsInteraction","data":
+[
+{"id":"1","Login":"admin1","Password":"pass123", "Email":"admin1@gmail.com", "Phone":"+79163452312"},
+{"id":"2","Login":"admin2","Password":"pAsS321", "Email":"admin2@gmail.com", "Phone":"+79163452345"}
+]
+}
+,{"type":"table","name":"Applications","database":"ClientsInteraction","data":
+[
+{"id":"1","Name":"Иван","Phone":"+79161234567","Message":"Интересуюсь разработкой мобильного приложения","Status":"Не обработано"},
+{"id":"2","Name":"Мария","Phone":"+79161234568","Message":"Хотел бы узнать стоимость разработки приложения","Status":"Не обработано"},
+{"id":"3","Name":"Анна","Phone":"+79161234569","Message":"Интересует разработка кроссплатформенного приложения","Status":"Обработано"},
+{"id":"4","Name":"Дмитрий","Phone":"+79161234570","Message":"Хотел бы заказать разработку мобильного приложения","Status":"Обработано"}
+]
+}
+,{"type":"table","name":"Clients","database":"ClientsInteraction","data":
+[
+{"Id":"1","Company":"ООО \"ТехПром\"","Login":"ivanov123","Password":"password1","Projects":"1","Phone":"+79991112233","Email":"ivanov@techprom.ru","AcceptCalls":"1"},
+{"Id":"2","Company":"ЗАО \"ИнноваСтрой\"","Login":"petrov456","Password":"password2","Projects":"1","Phone":"+79992223344","Email":"petrov@innovastroy.ru","AcceptCalls":"0"},
+{"Id":"3","Company":"ИП \"ЭкоСистемы\"","Login":"sidorov789","Password":"password3","Projects":"1","Phone":"+79993334455","Email":"sidorov@ecosys.ru","AcceptCalls":"1"},
+{"Id":"4","Company":"ООО \"ТехСервис\"","Login":"nikolaev654","Password":"password4","Projects":"1","Phone":"+79994445566","Email":"nikolaev@techservice.ru","AcceptCalls":"0"}
+]
+}
+,{"type":"table","name":"Projects","database":"ClientsInteraction","data":
+[
+{"id":"1","ProjectName":"Проект1","ClientID":"1","ProjectDescription":"Описание проекта","StatusHistory":"1"},
+{"id":"2","ProjectName":"Проект2","ClientID":"2","ProjectDescription":"Описание проекта","StatusHistory":"2"},
+{"id":"3","ProjectName":"Проект3","ClientID":"3","ProjectDescription":"Описание проекта","StatusHistory":"3"},
+{"id":"4","ProjectName":"Проект4","ClientID":"4","ProjectDescription":"Описание проекта","StatusHistory":"4"}
+]
+}
+,{"type":"table","name":"Statuses","database":"ClientsInteraction","data":
+[
+{"id":"1","StatusName":"Начат","Comment":"Проект начат","ClientAccept":"2","StatusColor":"#32CD32","ProjectID":"1"},
+{"id":"2","StatusName":"Начат","Comment":"Проект начат","ClientAccept":"2","StatusColor":"#32CD32","ProjectID":"2"},
+{"id":"3","StatusName":"Начат","Comment":"Проект начат","ClientAccept":"2","StatusColor":"#32CD32","ProjectID":"3"},
+{"id":"4","StatusName":"Начат","Comment":"Проект начат","ClientAccept":"2","StatusColor":"#32CD32","ProjectID":"4"},
+
+{"id":"1","StatusName":"Начата работа над дизайном","Comment":"Проект перешел в стадию работы над дизайном","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"1"},
+{"id":"2","StatusName":"Начата работа над функционалом","Comment":"Проект перешел в стадию работы над функционалом","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"2"},
+{"id":"3","StatusName":"Начата работа над дизайном","Comment":"Проект перешел в стадию работы над дизайном","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"3"},
+{"id":"4","StatusName":"Начато проектирование","Comment":"Проект перешел в стадию проектирования","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"4"},
+
+{"id":"1","StatusName":"Завершена работа над дизайном","Comment":"Проект завршил стадию работы над дизайном","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"1"},
+{"id":"2","StatusName":"Завершена работа над функционалом","Comment":"Проект завершил стадию работы над функционалом","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"2"},
+{"id":"3","StatusName":"Завершена работа над дизайном","Comment":"Проект завершил стадию работы над дизайном","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"3"},
+{"id":"4","StatusName":"Завершено проектирование","Comment":"Проект завершил стадию проектирования","ClientAccept":"0","StatusColor":"#32CD32","ProjectID":"4"}
+]
+}
+]
